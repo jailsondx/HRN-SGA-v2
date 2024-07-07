@@ -1,0 +1,14 @@
+.container-ContadorAtendimentos{
+    display: flex;
+    flex-direction: column;
+    
+    width: 40%;
+    height: 100%;
+
+    margin: 1%;
+    margin-top: 7%;
+    border-radius: 30px;
+    border-top: 15px solid green;
+
+    background-color: white;
+}

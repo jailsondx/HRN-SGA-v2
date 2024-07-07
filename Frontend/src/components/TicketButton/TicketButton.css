@@ -1,0 +1,55 @@
+.Totem-Buttons-Container {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    gap: 1rem; /* Espaço entre as linhas */
+    
+    width: 90vw;
+    height: 99vh;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .btn1-2, .btn1 {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    width: 100%;
+  }
+  
+  .btn1-2 {
+    gap: 1vw; /* Espaço entre os botões */
+  }
+  
+  
+  .TicketButton {
+    font-size: 4vw;
+    height: 29vh;
+    width: 100%;
+    
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    color: white;
+    background-image: linear-gradient(to bottom right, #008e88,#009993,#0d426a);
+
+    border: 2000px #0d426a;
+  }
+
+  .TicketButton:active{
+    transform: scale(0.80);
+}
+
+.label-Local-Totem{
+  font-size: x-small;
+  font-style: italic;
+  color: gray;
+}

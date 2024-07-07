@@ -1,0 +1,96 @@
+.Menu-Navbar{
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+    color: whitesmoke;
+
+    background-color: black;
+
+    width: 100vw;
+    height: 8vh;
+}
+
+.Menu-Title{
+    text-align: left;
+    font-size: 2rem;
+    width: 70%;
+    margin-left: 2vw;
+}
+
+.Menu-Configs{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    width: auto;
+}
+
+.Icon{
+    height: 45%;
+    width: auto;
+}
+
+.Menu-Icon{
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    height: 100%;
+
+    margin: 1vw;
+    margin-right: 2vw;
+}
+
+.Menu-Icon .Icon {
+    cursor: pointer;
+  }
+  
+
+
+
+
+
+
+  .Modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Modal-Content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .Modal-Content h2 {
+    margin-bottom: 20px;
+  }
+  
+  .Modal-Content label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .Modal-Content select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+  }
+  
+  .Modal-Content button {
+    margin: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }

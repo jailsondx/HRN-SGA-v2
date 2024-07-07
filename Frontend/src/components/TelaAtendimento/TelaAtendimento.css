@@ -1,0 +1,98 @@
+.container-Atendimento{
+    display: flex;
+
+    justify-content: center; 
+    align-items: flex-start;
+    text-align: center;
+
+    height: 92vh;
+    width: 90vw;
+}
+
+.container-Atendimento-Principal{
+    display: flex;
+    flex-direction: column;
+    
+    width: 70%;
+
+    margin: 1%;
+    border-radius: 30px;
+    border-top: 30px solid green;
+
+    background-color: white;
+}
+
+.span-Label-Title{
+    font-size: 2rem;
+    margin-top: 2vh;
+}
+
+.container-Atendimento-Principal.show{
+    height: 70%;
+    transition: height 0.5s ease-in;
+}
+
+.container-Atendimento-Principal.hide{
+    height: 50%;
+    transition: height 0.9s ease-out;
+}
+
+
+.container-Atendimento-Buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-Atendimento-Lista{
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+
+    margin: 1%;
+
+    width: 12%;
+    height: 100%;
+}
+
+.container-Ticket-Atendimento{
+    width: 100%;
+}
+
+.ticketChamado{
+    display: flex;
+
+    height: 17vh;
+    width: 100%;
+    font-size: 3rem;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.moreButtons{
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    font-style: italic;
+    color: gray;
+    cursor: pointer;
+}
+
+
+
+.container-chamaButton {
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  .container-chamaButton.show {
+    max-height: 100%;
+    transition: max-height 1s ease-in;
+  }
+  
+  .container-chamaButton.hide {
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+  }

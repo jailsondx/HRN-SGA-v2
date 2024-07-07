@@ -1,0 +1,48 @@
+.body-Totem{
+}
+
+.options-container{
+    display: flex;
+    flex-direction: column;
+
+    width: 50vh;
+    min-width: 300px;
+    height: 45vh;
+    min-height: 250px;
+    
+    background-color: rgba(0, 0, 0, 0.5);
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 10%;
+
+    border-radius: 5px;
+}
+
+
+.options-container label {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+
+    display: block;
+  }
+
+
+.options-container select {
+    width: 100%;
+    padding: 8px;
+    margin: 7vh;
+  }
+
+  .totem-buttons-container{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .options-container button {
+    cursor: pointer;
+    margin: 1vw;
+  }

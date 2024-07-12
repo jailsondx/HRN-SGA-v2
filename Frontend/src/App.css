@@ -17,3 +17,15 @@
   font-style: italic;
   color: gray;
 }
+
+.span-Title-g{
+  font-size: 5vh;
+  padding-bottom: 5vh;
+}
+
+.Icon-Visibility-Password-g{
+  height: 70%;
+  width: auto;
+  filter: drop-shadow(3px 5px 4px black);
+  cursor: pointer;
+}

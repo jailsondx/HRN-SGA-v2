@@ -1,19 +1,65 @@
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.form-Login{
+  display: flex;
+  flex-direction: column;
+
+  width: 30vw;
+  min-width: 250px;
+
+  padding: 3vw;
+  border-radius: 2vw;
+
+  color: whitesmoke;
+  background-image: url('crud-bg.jpg');
+  background-size: cover;
+  background-position: center;
+
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+
+.container-Login{
+  display: flex;
+  min-width: 200px;
+  flex-direction: row;
+  text-align: left;
+  margin-bottom: 2vw;
+}
+
+.container-Icon-Login{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  min-width: 10%;
   
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
+}
+
+.container-Icon-VisiblePassword-Login{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 5%;
+  min-width: 15px;
+  margin-left: 0%;
+}
+
+.container-Input-Login{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  width: 90%;
+}
+
+.input-Username-Login, .input-Password-Login{
+  width: 20vw;
+  min-width: 180px;
+  padding: 1%;
+}
+
+.Icon-Login, .Icon-Visibility{
+  height: 70%;
+  width: auto;
+  filter: drop-shadow(3px 5px 4px black);
+
+}

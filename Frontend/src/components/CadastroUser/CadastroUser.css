@@ -4,7 +4,7 @@
 
     width: 50vw;
 
-    padding: 5vw;
+    padding: 3vw;
     border-radius: 2vw;
 
     color: whitesmoke;
@@ -36,11 +36,11 @@
     
 }
 
-.container-Icon-VisiblePassword{
+.container-Icon-VisiblePassword-Cadastro{
     display: flex;
     justify-content: center;
     align-items: end;
-    width: 5%;
+    width: 4%;
     margin-left: -38%;
 }
 
@@ -65,12 +65,8 @@
     width: 20vw;
 }
 
-.Icon-Cadastro, .Icon-Visibility{
+.Icon-Cadastro{
     height: 70%;
     width: auto;
     filter: drop-shadow(3px 5px 4px black);
-
-}
-.Icon-Visibility{
-    cursor: pointer;
 }

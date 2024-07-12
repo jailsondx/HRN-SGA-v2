@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FcPodiumWithSpeaker, FcPrivacy, FcAnswers } from "react-icons/fc";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { FaRegEye  } from "react-icons/fa";
+import { FaEyeLowVision } from "react-icons/fa6";
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import { Alert } from '@mui/material';
@@ -73,7 +74,7 @@ const Cadastro = () => {
 
   return (
     <div className='form-Cadastro'>
-      <h2>Cadastro de Novo Usuário</h2>
+      <span className='span-Title-g'>Cadastro de Novo Usuário</span>
       <form onSubmit={handleRegister}>
         <div className='container-Cadastro'>
           <div className='container-Icon-Cadastro'>
@@ -87,7 +88,6 @@ const Cadastro = () => {
               placeholder="Nome Completo"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              required
             />
           </div>
         </div>
@@ -104,7 +104,6 @@ const Cadastro = () => {
               placeholder="Nome de Usuário"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
             />
           </div>
         </div>
@@ -122,13 +121,11 @@ const Cadastro = () => {
                 placeholder="Senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
               />
             </div>
-
           </div>
-          <div className='container-Icon-VisiblePassword' onClick={toggleShowPassword}>
-                {showPassword ? <AiFillEyeInvisible className="Icon-Visibility"/> : <AiFillEye className="Icon-Visibility"/>}
+          <div className='container-Icon-VisiblePassword-Cadastro' onClick={toggleShowPassword}>
+                {showPassword ? <FaEyeLowVision  className="Icon-Visibility-Password-g"/> : <FaRegEye className="Icon-Visibility-Password-g"/>}
           </div>
         </div>
 

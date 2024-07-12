@@ -9,10 +9,20 @@
 
     background-color: white;
     border-radius: 30px;
+    
+    margin: 1%;
+    border-radius: 2vw;
+    border-top: 2vh solid green;
 
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     padding: 1vw;
 
+}
+
+.span-Label-Lista-Tickets{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 3vh;
 }
 
 .container-Tickets-Gerados{

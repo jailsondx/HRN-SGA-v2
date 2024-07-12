@@ -1,5 +1,7 @@
 const DBconnection = require("../connection");
-const getCurrentDateTime = require("./DataAtual");
+const {getCurrentDate, getCurrentTime} = require('./Datas');
+const FormataNumeroTicket = require("./FormataNumeroTicket");
+
 require('dotenv').config();
 
 async function GeraTicket(tipoTicket, totemLocation) {
@@ -12,13 +14,17 @@ async function GeraTicket(tipoTicket, totemLocation) {
     case 'Recepcao Emergencia':
       DBtable = process.env.DB_TABLE_EMERGENCIA;
       break;
+    case 'Recepcao Ambulatorio':
+      DBtable = process.env.DB_TABLE_AMBULATORIO;
+      break;
     default:
       throw new Error('Localização do totem inválida');
   }
 
   const tipo = tipoTicket;
-  const dataAtual = getCurrentDateTime();
-  const recebeUltimoNumero = 'SELECT MAX(numero) AS lastNumber FROM ' + DBtable + ' WHERE tipo = ?';
+  const dataAtual = getCurrentDate();
+  const horaAtual = getCurrentTime();
+  const recebeUltimoNumero = `SELECT MAX(numero) AS lastNumber FROM ${DBtable} WHERE tipo = ?`;
 
   try {
     // Executa a query de forma assíncrona e espera o resultado
@@ -30,13 +36,21 @@ async function GeraTicket(tipoTicket, totemLocation) {
 
     try {
       // Preparando a consulta SQL
-      const sql = 'INSERT INTO ' + DBtable + ' (tipo, numero, estado, data_registro) VALUES (?, ?, ?, ?)';
-      const values = [tipo, proximoNumero, 'GERADO', dataAtual];
+      const sql = `INSERT INTO ${DBtable} (tipo, numero, estado_gerado, estado_atendimento, data_registro_gerado, hora_registro_gerado) VALUES (?, ?, ?, ?, ?, ?)`;
+      const values = [tipo, proximoNumero, true, false, dataAtual, horaAtual];
 
       // Executando a consulta
       await DBconnection.query(sql, values);
 
-      console.log('\nLocalizacao:', totemLocation, '\nTicket:', tipo + '-' + proximoNumero, '\nGerado com Sucesso');
+      const data = {
+        'Origem': 'GeraTickets.js',
+        'Localizacao': totemLocation,
+        'Data e Hora': dataAtual + ' ' + horaAtual,
+        'Ticket': tipo + '-' + FormataNumeroTicket(proximoNumero),
+        'Status': 'Gerado com Sucesso'
+      }
+
+      console.table(data);
       return { success: true, proximoNumero };
     } catch (error) {
       console.error('Erro ao inserir novo ticket:', error);

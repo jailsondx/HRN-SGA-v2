@@ -51,6 +51,7 @@ const TicketButtonPG2 = () => {
             </button>
             ))}
         </div>
+        <span className='label-Local-g'>Local: {totemLocation}</span>
       </div>
     </div>
   );

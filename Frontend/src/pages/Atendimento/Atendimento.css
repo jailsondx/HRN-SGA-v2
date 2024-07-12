@@ -1,4 +1,10 @@
-.Tela-Atendimento{
+.container-Tela-Atendimento{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.component-Tela-Atendimento{
     display: flex;
 
     justify-content: center;

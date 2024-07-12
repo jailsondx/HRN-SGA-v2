@@ -5,6 +5,23 @@ export function falarTexto(texto) {
         // Cria um novo objeto SpeechSynthesisUtterance
         var utterance = new SpeechSynthesisUtterance(texto);
 
+        // Verifica se o texto do utterance contém '-'
+        if (utterance.text.includes('-')) {
+            const dialog = splitIntoTwoParts(utterance.text);
+
+            switch(dialog[0]){
+                case 'SESMT':
+                    dialog[0] = 'SESMITE'; 
+                    break;
+                case 'EX':
+                    dialog[0] = 'É XIS'; 
+                    break;
+            }
+
+            // Cria um novo utterance para o texto antes do "-"
+            utterance = new SpeechSynthesisUtterance(dialog[0]+dialog[1]);
+        }
+
         // Fala o texto
         window.speechSynthesis.speak(utterance);
 
@@ -13,3 +30,16 @@ export function falarTexto(texto) {
     }
 }
 
+function splitIntoTwoParts(value) {
+    // Encontra a posição do primeiro "-"
+    const index = value.indexOf('-');
+
+    // Verifica se "-" foi encontrado
+    if (index !== -1) {
+        // Divide a string em duas partes, usando a posição do primeiro "-"
+        return [value.substring(0, index), value.substring(index + 1)];
+    } else {
+        // Se não houver "-", retorna a string inteira no índice [0] e uma string vazia no índice [1]
+        return [value, ''];
+    }
+}

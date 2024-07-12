@@ -7,8 +7,14 @@
 
     margin: 1%;
     margin-top: 7%;
-    border-radius: 30px;
-    border-top: 15px solid green;
+    border-radius: 2vw;
+    border-top: 2vh solid green;    
 
     background-color: white;
+}
+
+.span-Label-Title-MiniContainer{
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 2vh;
 }

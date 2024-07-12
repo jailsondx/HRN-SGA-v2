@@ -1,0 +1,51 @@
+.container-Chamada-TV{
+    display: flex;
+    flex-direction: row;
+    
+    width: 90vw;
+    height: 90vh;
+
+    justify-content: right;
+    align-items: center;
+    text-align: center;
+
+    margin: 1%;
+    border-radius: 2vw;
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+
+    background-image: url('/blue-bg.jpg');  
+    background-size: cover;                
+    background-position: center;      
+}
+
+.container-TicketExibido-TV{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background-color: whitesmoke;
+}
+
+.ticketExibido{
+    font-size: 12vw;
+}
+
+.guicheExibido{
+    font-size: 3vw;
+    font-style: italic;
+}
+
+.container-ListExibido-TV{
+    display: flex;
+
+    width: 20%;
+    height: 100%;
+
+    justify-content: center;
+
+}

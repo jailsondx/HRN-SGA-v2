@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import ChamaButton from '../ChamaButton/ChamaButton';
 import ListaTickets from '../ListaTickets/ListaTickets';
@@ -9,22 +9,38 @@ import './TelaAtendimento.css';
 import { VerificaLocalStorageGuiche, VerificaLocalStorageRecepcao } from '../../functions/LocalStorageVerification';
 import ContadorAtendimentos from '../ContadorAtendimentos/ContadorAtendimentos';
 
-const recepcaoLocation = VerificaLocalStorageRecepcao();
-const guicheLocation = VerificaLocalStorageGuiche();
-
 const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
-const socket = io(NODE_URL);
 
 const TelaAtendimento = () => {
   const [mostrarMais, setMostrarMais] = useState(false);
-  //const [ticketAtendimento, setTicketAtendimento] = useState(null);
+  const [socket, setSocket] = useState(null);
   const ticketAtendimento = useSelector((state) => state.value.value);
+  const [updateList, setUpdateList] = useState(0);
 
-  socket.emit('Atendimento', recepcaoLocation, guicheLocation);
+  // Efeito para criar e gerenciar a conexão WebSocket
+  useEffect(() => {
+    const recepcaoLocation = VerificaLocalStorageRecepcao();
+    const guicheLocation = VerificaLocalStorageGuiche();
+    const newSocket = io(NODE_URL);
+
+    newSocket.emit('Atendimento', recepcaoLocation, guicheLocation);
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.close();
+    };
+  }, []);
+
+
+  
+
+
 
   const handleMostrarMais = () => {
     setMostrarMais(!mostrarMais);
   };
+
+  if (!socket) return <div>Loading...</div>;
 
   return (
     <div className='container-Atendimento'>

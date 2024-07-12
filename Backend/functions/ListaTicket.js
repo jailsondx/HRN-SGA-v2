@@ -20,7 +20,7 @@ async function listaTicket(localAtendimento, res) {
 
     try {
         // Consulta SQL para selecionar tickets com estado "GERADO"
-        const sql = `SELECT * FROM ${DBtable} WHERE estado = "GERADO" LIMIT 20`;
+        const sql = `SELECT * FROM ${DBtable} WHERE estado_atendimento = false LIMIT 20`;
         const [rows] = await DBconnection.query(sql);
 
         // Formatar o número do ticket e devolver os resultados

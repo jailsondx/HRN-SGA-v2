@@ -2,6 +2,8 @@ const express = require('express');
 const GeraTicket = require('../functions/GeraTicket'); // Ajuste o caminho conforme necessário
 const chamaTicket = require('../functions/ChamaTicket');
 const listaTicket = require('../functions/ListaTicket');
+const CadastroUser = require('../functions/CadastroUser');
+const LoginUser = require('../functions/LoginUser');
 
 const router = express.Router();
 
@@ -58,6 +60,52 @@ router.get('/listaTickets', async (req, res) => {
   } catch (error) {
     console.error('Erro ao listar os tickets:', error);
     res.status(500).json({ error: 'Erro ao listar os tickets' });
+  }
+});
+
+
+// Rota para receber os dados para cadastro do usuário
+router.post('/cadastro', async (req, res) => {
+  try {
+    const { username, password, fullName } = req.body;
+
+    // Verificação de parâmetros obrigatórios
+    if (!username || !password || !fullName) {
+      return res.status(400).json({ error: 'Parâmetros inválidos' });
+    }
+
+    // Chamada à função de cadastro de usuário
+    const cadastroStatus = await CadastroUser(username, password, fullName);
+
+    // Resposta com base no resultado do cadastro
+    if (cadastroStatus.success) {
+      res.json({ message: cadastroStatus.message });
+    } else {
+      // Considerando erros como nome de usuário existente etc.
+      res.status(400).json({ error: cadastroStatus.message });
+    }
+  } catch (error) {
+    console.error('Erro no cadastro:', error);
+    res.status(500).json({ error: 'Erro interno no cadastro' });
+  }
+});
+
+
+// Rota de Login
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const result = await LoginUser(username, password);
+
+    if (result.status) {
+      res.status(200).json({ message: 'Sucesso no login.' });
+    } else {
+      res.status(401).json({ message: 'Credenciais inválidas.', reason: result.motivo });
+    }
+  } catch (error) {
+    console.error('Erro no login:', error);
+    res.status(500).json({ message: 'Erro no login.' });
   }
 });
 

@@ -1,9 +1,8 @@
 const DBconnection = require("../connection");
-const getCurrentDateTime = require("./DataAtual");
+const {getCurrentDate, getCurrentTime} = require('./Datas');
 const FormataNumeroTicket = require("./FormataNumeroTicket");
 
 async function chamaTicket(localAtendimento, tipoTicket) {
-    const dataAtual = getCurrentDateTime();
     const DBtable = getDBTable(localAtendimento);
 
     if (!DBtable) {
@@ -28,15 +27,29 @@ function getDBTable(localDeAtendimento) {
     }
 }
 
+async function updateTable(DBtable, tipo, numero){
+    const dataAtual = getCurrentDate();
+    const horaAtual = getCurrentTime();
+    // Preparando a consulta SQL
+    const sql = `UPDATE ${DBtable} SET estado_atendimento = ?, data_registro_atendimento = ?, hora_registro_atendimento = ? WHERE tipo = ? AND numero = ?`;
+    const values = [true, dataAtual, horaAtual, tipo, numero];
+    // Executando a consulta
+    await DBconnection.query(sql, values);
+}
+
 async function SQLChamaTicket(DBtable, tipo) {
-    const recebeTicket = `SELECT * FROM ${DBtable} WHERE estado = "GERADO" AND tipo = ? ORDER BY id ASC LIMIT 1`;
+
+    const recebeTicket = `SELECT * FROM ${DBtable} WHERE estado_atendimento = false AND tipo = ? ORDER BY id ASC LIMIT 1`;
 
     try {
         const [rows] = await DBconnection.query(recebeTicket, [tipo]);
         
         if (rows.length > 0) {
             const ticketChamado = `${rows[0].tipo}-${FormataNumeroTicket(rows[0].numero)}`;
-            console.log('\nTicket Chamado:', ticketChamado);
+
+            //Funcao para fazer o update da tabela para definir o ticket como atendido
+            updateTable(DBtable, rows[0].tipo, rows[0].numero);
+            
             return ticketChamado;
         } else {
             const ticketChamado = `Não há ticket do tipo: ${tipo} esperando Atendimento`;
@@ -50,14 +63,18 @@ async function SQLChamaTicket(DBtable, tipo) {
 }
 
 async function SQLChamaTicketOrdem(DBtable) {
-    const recebeTicket = `SELECT * FROM ${DBtable} WHERE estado = "GERADO" ORDER BY id ASC LIMIT 1`;
+
+    const recebeTicket = `SELECT * FROM ${DBtable} WHERE estado_atendimento = false ORDER BY id ASC LIMIT 1`;
 
     try {
         const [rows] = await DBconnection.query(recebeTicket);
         
         if (rows.length > 0) {
             const ticketChamado = `${rows[0].tipo}-${FormataNumeroTicket(rows[0].numero)}`;
-            console.log('\nTicket Chamado:', ticketChamado);
+            
+            //Funcao para fazer o update da tabela para definir o ticket como atendido
+            updateTable(DBtable, rows[0].tipo, rows[0].numero);
+
             return ticketChamado;
         } else {
             const ticketChamado = 'Não há ticket esperando Atendimento';

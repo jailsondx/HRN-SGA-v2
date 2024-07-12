@@ -5,7 +5,7 @@
     align-items: flex-start;
     text-align: center;
 
-    height: 92vh;
+    height: 90vh;
     width: 90vw;
 }
 
@@ -16,16 +16,34 @@
     width: 70%;
 
     margin: 1%;
-    border-radius: 30px;
-    border-top: 30px solid green;
+    border-radius: 2vw;
+    border-top: 2vh solid green;
 
     background-color: white;
 }
 
-.span-Label-Title{
-    font-size: 2rem;
+.container-Ticket-Atendimento{
+    width: 100%;
     margin-top: 2vh;
 }
+
+.span-Label-Title{
+    font-size: 4vh;
+    font-weight: bold;
+}
+
+.ticketChamado{
+    display: flex;
+
+    height: 17vh;
+    width: 100%;
+    font-size: 3rem;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 
 .container-Atendimento-Principal.show{
     height: 70%;
@@ -56,22 +74,6 @@
     height: 100%;
 }
 
-.container-Ticket-Atendimento{
-    width: 100%;
-}
-
-.ticketChamado{
-    display: flex;
-
-    height: 17vh;
-    width: 100%;
-    font-size: 3rem;
-
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
 .moreButtons{
     margin-top: 3vh;
     margin-bottom: 3vh;
@@ -79,8 +81,6 @@
     color: gray;
     cursor: pointer;
 }
-
-
 
 .container-chamaButton {
     max-height: 0;

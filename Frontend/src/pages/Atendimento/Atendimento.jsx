@@ -4,14 +4,14 @@ import TelaAtendimento from '../../components/TelaAtendimento/TelaAtendimento';
 import { Provider } from 'react-redux';
 
 import './Atendimento.css'
-import globalTicket from '../../GlobalTicket';
+import Store from '../../Store';
 
 const Atendimento = () => {
   return (
-      <div>
+      <div className='container-Tela-Atendimento'>
         <TopMenu />
-          <div className='Tela-Atendimento'>
-          <Provider store={globalTicket}>
+          <div className='component-Tela-Atendimento'>
+          <Provider store={Store}>
             <TelaAtendimento />
          </Provider>
           </div>

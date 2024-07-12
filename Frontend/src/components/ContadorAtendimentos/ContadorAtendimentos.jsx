@@ -5,7 +5,7 @@ import './ContadorAtendimentos.css'
 function ContadorAtendimentos() {
     return (
         <div className='container-ContadorAtendimentos'>
-            <span className='label-Title-MiniContainer'>Novo Componente</span>
+            <span className='span-Label-Title-MiniContainer'>Atendimentos Hoje</span>
             <div className='cont-quantidade'>Quantidade:</div>
         </div>
     );

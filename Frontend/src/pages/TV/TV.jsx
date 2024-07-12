@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import { falarTexto } from '../../functions/SpeechText';
 import { VerificaLocalStorageTV } from '../../functions/LocalStorageVerification';
+import TVTicket from '../../components/TV/TV-Ticket/TV-Ticket';
+import TVList from '../../components/TV/TV-List/TV-List';
 
 const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
 
@@ -70,6 +72,7 @@ const TV = () => {
 
     socket.on('disconnect', () => {
       console.log('Desconectado do servidor Socket.IO');
+      window.location.reload();
     });
 
     socket.on('reconnect_attempt', (attempt) => {
@@ -106,10 +109,8 @@ const TV = () => {
         </div>
       ) : (
         <div>
-          <h1>TV</h1>
-          <p>{ticket}</p>
-          <p>{guiche}</p>
-          <span>{tvLocation}</span>
+          <TVTicket ticket={ticket} guiche={guiche}/>
+          <span className='label-Local-g'>Local: {tvLocation}</span>
         </div>
       )}
     </div>

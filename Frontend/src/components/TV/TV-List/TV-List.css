@@ -1,0 +1,15 @@
+.container-TicketList-TV {
+    display: flex;
+    width: 100%;
+    color: whitesmoke;
+    justify-content: center;
+    
+    padding: 2vh;
+}
+
+.span-Title-TicketList-TV{
+    font-size: 4vh;
+    font-weight: bold;
+    
+    text-shadow: 0.1em 0.1em 0.2em black
+}

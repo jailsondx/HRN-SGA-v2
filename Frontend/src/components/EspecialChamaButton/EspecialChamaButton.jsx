@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
-import { setValue } from '../../GlobalTicket';
+import { setValue } from '../../Store';
 
 import './EspecialChamaButton.css';
 import { VerificaLocalStorage, VerificaLocalStorageGuiche, VerificaLocalStorageRecepcao } from '../../functions/LocalStorageVerification';
@@ -12,8 +12,8 @@ const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
 const EspecialChamaButton = ({ id, socket }) => {
   const socketTelaAtendimento = socket;
   const chamaTicket = useDispatch();
-  var recepcaoLocation = VerificaLocalStorageRecepcao();
-  var guicheLocation = VerificaLocalStorageGuiche();
+  const recepcaoLocation = VerificaLocalStorageRecepcao();
+  const guicheLocation = VerificaLocalStorageGuiche();
 
   const enviarMensagem = async (event) => {
     const ticketID = event.target.id;

@@ -1,4 +1,8 @@
 .Button-Chama-Ticket{
-    
+    font-size: 2vh;
     margin: 0.5%;
+    padding: 1vh;
+
+    color: whitesmoke;
+    background-color: green;
 }

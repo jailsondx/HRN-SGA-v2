@@ -29,14 +29,19 @@ const configureSocket = (server) => {
             io.to('TV Recepcao Ambulatorio').emit('Mensagem:TicketEmAtendimento', mensagem);
             break;
         }
-        const data = {
-          'Recepcao': mensagem[0],
-          'Guiche': mensagem[1],
-          'Ticket Chamado': mensagem[2],
-        };
+
+        const data= [
+          {
+            'Origem': 'socketConfig.js',
+            'Recepcao': mensagem[0],
+            'Guiche': mensagem[1],
+            'Ticket Chamado': mensagem[2],
+          }
+        ]
         console.table(data);
-        // Espera 7 segundos antes de processar a próxima mensagem
-        await new Promise(resolve => setTimeout(resolve, 7000));
+
+        // Espera 5 segundos antes de processar a próxima mensagem
+        await new Promise(resolve => setTimeout(resolve, 5000));
       } else {
         // Se não houver mensagens na fila, espera 1 segundo antes de verificar novamente
         await new Promise(resolve => setTimeout(resolve, 1000));

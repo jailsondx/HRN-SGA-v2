@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FiAirplay } from "react-icons/fi";
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
 import './TopMenu.css';
 
@@ -19,11 +18,11 @@ function TopMenu() {
     <div className='Menu'>
       <nav className='Menu-Navbar'>
         <div className='Menu-Title'>
-          <span>Atendimento</span>
+        <span className="span-Title-TopMenu">Atendimento</span>
         </div>
         <div className='Menu-Configs'>
           <span><b>Recepção: </b>{recepcao}</span>
-          <span><b>Guiche:</b> {guiche}</span>
+          <span><b>Guiche: </b> {guiche}</span>
         </div>
         <div className="Menu-Icon">
           <TbAdjustmentsHorizontal className="Icon" onClick={() => setShowModal(true)} />

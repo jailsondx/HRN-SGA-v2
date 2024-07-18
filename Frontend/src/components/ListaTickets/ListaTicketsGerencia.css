@@ -1,0 +1,38 @@
+
+
+.input-search-bar {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.scrollable-list {
+    max-height: 45vh; /* Use a percentage of the viewport height */
+    overflow-y: auto;
+    border: 1px solid #ddd; /* Optional: add a border to the scrollable area */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.li-Tickets-Itens{
+    display: flex;
+    flex-direction: row;
+    padding: 1dvh;
+    border-bottom: 1px solid gray;
+
+    
+}
+
+.div-list-Tickets-Text{
+    text-align: right;
+    width: 55%;
+    margin-right: 2%;
+}
+
+.div-list-Tickets-Button{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 43%;
+}

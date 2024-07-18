@@ -1,10 +1,9 @@
-@import url('https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
-
-body{
+body {
   font-family: 'Poppins', sans-serif;
-  
 }
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -12,9 +11,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: whitesmoke;
+  background-color: white;
+  border: 1px solid black;
   cursor: pointer;
   transition: border-color 0.25s;
+
+  margin-top: 2dvh;
+
+  width: 100%;
 }
 button:hover {
   background-color: #89CFF0;

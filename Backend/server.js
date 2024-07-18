@@ -44,6 +44,8 @@ app.get('/', (req, res) => {
   res.send('Servidor rodando...');
 });
 
+
+
 // Configuração do Socket.IO
 configureSocket(server);
 

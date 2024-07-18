@@ -4,6 +4,8 @@ const chamaTicket = require('../functions/ChamaTicket');
 const listaTicket = require('../functions/ListaTicket');
 const CadastroUser = require('../functions/CadastroUser');
 const LoginUser = require('../functions/LoginUser');
+const ApagaTicket = require('../functions/ApagaTicket');
+const ZerarTickets = require('../functions/ZerarTickets');
 
 const router = express.Router();
 
@@ -60,6 +62,46 @@ router.get('/listaTickets', async (req, res) => {
   } catch (error) {
     console.error('Erro ao listar os tickets:', error);
     res.status(500).json({ error: 'Erro ao listar os tickets' });
+  }
+});
+
+
+//Rota para APAGAR ticket
+router.delete('/deletaticket', async (req, res) => {
+  const { ticketId, recepcaoLocation, username } = req.body;
+  const action = 'Apagar Ticket Especifico';
+  console.log('API DELETATICKET:',ticketId, recepcaoLocation, username, action);
+
+  try {
+    const result = await ApagaTicket(ticketId, recepcaoLocation, username, action);
+
+    if (result.success) {
+      res.status(200).json({ message: result.message });
+    } else {
+      res.status(401).json({ message: 'Credenciais inválidas.', reason: result.message });
+    }
+  } catch (error) {
+    console.error('Erro ao apagar o ticket:', error);
+    res.status(500).json({ message: 'Erro ao apagar o ticket.' });
+  }
+});
+
+//Rota para ZERAR ticket
+router.delete('/zerartickets', async (req, res) => {
+  const {recepcaoLocation, username } = req.body;
+  const action = 'Tickets Zerados';
+
+  try {
+    const result = await ZerarTickets(recepcaoLocation, username, action);
+
+    if (result.success) {
+      res.status(200).json({ message: result.message });
+    } else {
+      res.status(401).json({ message: 'Credenciais inválidas.', reason: result.message });
+    }
+  } catch (error) {
+    console.error('Erro ao apagar o ticket:', error);
+    res.status(500).json({ message: 'Erro ao apagar o ticket.' });
   }
 });
 

@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ListaTickets.css';
-import { VerificaLocalStorageRecepcao } from '../../functions/LocalStorageVerification';
 
 const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
 
-const ListaTickets = () => {
+const ListaTickets = ({ refLocation }) => {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState('');
-
-  const recepcaoLocation = VerificaLocalStorageRecepcao();
+  console.log('REFERNCIA::::::::::::::', refLocation);
 
   useEffect(() => {
     const recebeTickets = async () => {
       try {
         const response = await axios.get(`${NODE_URL}/api/listaTickets`, {
           params: {
-            local: recepcaoLocation,
+            local: refLocation,
           },
         });
         setTickets(response.data);
@@ -27,10 +25,12 @@ const ListaTickets = () => {
     };
 
     recebeTickets();
-    //Atualiza a lista a cada 60 segundos
-    setInterval(recebeTickets, 60000);
-    
-  }, [recepcaoLocation]);
+    const intervalId = setInterval(recebeTickets, 60000);
+
+    // Limpa o intervalo quando o componente é desmontado
+    return () => clearInterval(intervalId);
+
+  }, [refLocation]);
 
   if (error) {
     return <div>{error}</div>;

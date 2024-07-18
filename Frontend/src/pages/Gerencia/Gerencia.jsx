@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopMenuGerencia from '../../components/TopMenu/TopMenuGerencia';
 import Cadastro from '../../components/CadastroUser/CadastroUser'
+import Servicos from '../../components/Servicos/Servicos';
 
 import './Gerencia.css'
 
 
+
 const Home = () => <div>Home Content</div>;
 const About = () => <div>About Content</div>;
-const Services = () => <div>Services Content</div>;
 
 const Gerencia = () => {
   const navigate = useNavigate();
@@ -27,8 +28,8 @@ const Gerencia = () => {
         return <Home />;
       case 'About':
         return <About />;
-      case 'Services':
-        return <Services />;
+      case 'Servicos':
+        return <Servicos />;
       case 'Cadastro':
         return <Cadastro />;
       default:

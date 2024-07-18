@@ -7,13 +7,9 @@
     padding: 3vw;
     border-radius: 2vw;
 
-    color: whitesmoke;
     background-image: url('crud-bg.jpg');
     background-size: cover;
     background-position: center;
-
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    text-shadow: 0.1em 0.1em 0.2em black;
 }
 
 
@@ -25,7 +21,7 @@
 
     justify-content: flex-start;
     text-align: left;
-    margin-bottom: 2vw;
+    margin-bottom: 2vh;
 }
 
 .container-Icon-Cadastro{

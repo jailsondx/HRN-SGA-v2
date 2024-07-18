@@ -74,7 +74,10 @@ const Cadastro = () => {
 
   return (
     <div className='form-Cadastro'>
-      <span className='span-Title-g'>Cadastro de Novo Usuário</span>
+      <div className='div-Title-Form-g'>
+        <span className='span-Title-g'>Cadastro de Novo Usuário</span>
+      </div>
+
       <form onSubmit={handleRegister}>
         <div className='container-Cadastro'>
           <div className='container-Icon-Cadastro'>

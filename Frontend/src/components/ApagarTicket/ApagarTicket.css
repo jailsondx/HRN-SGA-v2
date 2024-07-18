@@ -1,0 +1,9 @@
+.div-pai-ApagarTicket{
+    width: 40dvw;
+}
+.form-Apagar-Ticket{
+    padding: 2dvh;
+    background-image: url(crud-bg.jpg);
+    background-size: cover;
+    background-position: center;
+}

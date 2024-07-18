@@ -18,9 +18,26 @@
   color: gray;
 }
 
+.div-Title-Form-g{
+  margin-top: 2dvh;
+  margin-bottom: 5dvh;
+}
+
 .span-Title-g{
   font-size: 5vh;
   padding-bottom: 5vh;
+  color: whitesmoke;
+  text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+.select-g{
+  padding: 1dvh;
+  margin-right: 2dvw;
+  margin-left: 2dvw;
+}
+
+.input-Camp-g{
+  padding: 1dvh;
 }
 
 .Icon-Visibility-Password-g{
@@ -28,4 +45,21 @@
   width: auto;
   filter: drop-shadow(3px 5px 4px black);
   cursor: pointer;
+}
+
+.Icon-delete-ticket-g{
+  width: 10%;
+  min-width: 20px;
+  cursor: pointer;
+}
+
+.Icon-delete-ticket-g:hover{
+  scale: 1.2;
+}
+
+
+[class^="form"] {
+  color: whitesmoke;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0.1em 0.1em 0.2em black;
 }

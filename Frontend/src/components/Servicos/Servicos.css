@@ -1,0 +1,34 @@
+.span-Service-Component.hide {
+    display: none;
+}
+
+.span-Service-Component.show {
+    display: block;
+}
+
+.container-Service{
+    height: 92dvh;
+    width: 100dvw;
+}
+
+.container-Service-Option{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 2dvh;
+}
+
+.item-Service-Option{
+    margin-right: 1dvw;
+    margin-left: 1dvw;
+    border-bottom: 0.1dvw solid gray;
+}
+
+
+.container-Service-Render-Component{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 84dvh;
+}

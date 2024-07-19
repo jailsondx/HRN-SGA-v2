@@ -44,8 +44,8 @@ function Totem() {
             <option value='Recepcao Ambulatorio'>Recepção Ambulatório</option>
           </select>
           <div className='totem-buttons-container'>
-            <button onClick={handleConfirm} disabled={!selectedLocation}>Confirmar</button>
-            <button onClick={handleCancel}>Cancelar</button>
+            <button className='button-Modal-Confirm' onClick={handleConfirm} disabled={!selectedLocation}>Confirmar</button>
+            <button className='button-Modal-Cancel' onClick={handleCancel}>Cancelar</button>
           </div>
         </div>
       ) : (

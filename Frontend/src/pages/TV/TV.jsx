@@ -6,6 +6,7 @@ import { VerificaLocalStorageTV } from '../../functions/LocalStorageVerification
 import TVTicket from '../../components/TV/TV-Ticket/TV-Ticket';
 import TVList from '../../components/TV/TV-List/TV-List';
 
+import './TV.css'
 const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
 
 const TV = () => {
@@ -103,8 +104,8 @@ const TV = () => {
             <option value='TV Recepcao Ambulatorio'>Recepção Ambulatório</option>
           </select>
           <div className='tv-buttons-container'>
-            <button onClick={handleConfirm} disabled={!selectedLocation}>Confirmar</button>
-            <button onClick={handleCancel}>Cancelar</button>
+            <button className='button-Modal-Confirm' onClick={handleConfirm} disabled={!selectedLocation}>Confirmar</button>
+            <button className='button-Modal-Cancel' onClick={handleCancel}>Cancelar</button>
           </div>
         </div>
       ) : (

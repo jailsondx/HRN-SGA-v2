@@ -1,11 +1,11 @@
-.div-pai-ApagarTicket{
+.div-pai-ZerarTicket{
     width: 40dvw;
 }
-.form-Apagar-Ticket{
+.form-Zerar-Ticket{
     padding: 2dvh;
     background-image: url(crud-bg.jpg);
     background-size: cover;
     background-position: center;
 
-    border-radius: 2vw 2vw 0 0;
+    border-radius: 2vw;
 }

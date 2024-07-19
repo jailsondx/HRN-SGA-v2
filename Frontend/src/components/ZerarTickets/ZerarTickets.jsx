@@ -1,48 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import './zera.css';
+import ConfirmModal from '../Modal/ConfirmModal';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import './ZerarTickets.css';
 
 const ZerarTickets = () => {
   const [recepcaoLocation, setRecepcaoLocation] = useState('');
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    console.log('showModal state changed:', showModal);
-  }, [showModal]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted');
-    setShowModal(true);
-  };
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
   const handleConfirm = async () => {
-    console.log('Confirm clicked');
     const username = sessionStorage.getItem('username');
     try {
       const response = await axios.delete('http://localhost:3001/api/zerartickets', {
         data: { recepcaoLocation, username },
       });
-      alert(response.data.message);
+      setSnackbarMessage(response.data.message);
+      setSnackbarSeverity('success');
     } catch (error) {
       console.error('Erro ao zerar tickets:', error);
-      alert('Erro ao zerar tickets');
-    } finally {
-      setShowModal(false);
+      setSnackbarMessage('Erro ao zerar tickets');
+      setSnackbarSeverity('error');
     }
+    setShowModal(false);
+    setSnackbarOpen(true);
   };
 
-  const handleCancel = () => {
-    console.log('Cancel clicked');
+  const handleOpenModal = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
     setShowModal(false);
   };
 
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div className='div-pai-ZerarTicket'>
+      <form className='form-Zerar-Ticket' onSubmit={handleOpenModal}>
+        <div className='div-Title-Form-g'>
+          <span className='span-Title-g'>Zerar Tickets</span>
+        </div>
         <div>
-          <label htmlFor="recepcao">Selecione a Recepção:</label>
           <select
+            className='select-g'
             id="recepcaoLocation"
             value={recepcaoLocation}
             onChange={(e) => setRecepcaoLocation(e.target.value)}
@@ -56,18 +65,24 @@ const ZerarTickets = () => {
         </div>
         <button type="submit">Zerar Tickets</button>
       </form>
+      <ConfirmModal
+        isOpen={showModal}
+        onRequestClose={handleCloseModal}
+        onConfirm={handleConfirm}
+        message="Tem certeza que deseja zerar os tickets?"
+      />
 
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Confirmar Ação</h2>
-            <p>Tem certeza que deseja zerar os tickets para {recepcaoLocation}?</p>
-            <button onClick={handleConfirm}>Confirmar</button>
-            <button onClick={handleCancel}>Cancelar</button>
-          </div>
-        </div>
-      )}
-    </>
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={snackbarSeverity}
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
+    </div>
   );
 };
 

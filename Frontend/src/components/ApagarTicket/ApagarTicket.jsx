@@ -18,7 +18,7 @@ const ApagarTicket = () => {
         <div className='div-pai-ApagarTicket'>
             <form className='form-Apagar-Ticket' onSubmit={handleLista}>
                 <div className='div-Title-Form-g'>
-                    <span className='span-Title-g'>Escolha a Recepção</span>
+                    <span className='span-Title-g'>Apagar Tickets</span>
                 </div>
                 <div>
                     <select 

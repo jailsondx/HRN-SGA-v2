@@ -67,24 +67,3 @@
 .container-Buttons-TopMenu {
   display: flex;
 }
-
-.menu-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  color: whitesmoke;
-
-  padding-left: 2vw;
-  padding-right: 2vw;
-  height: 8vh;
-
-  margin-right: 1px;
-}
-
-.menu-item:hover {
-  color: whitesmoke;
-  text-shadow: 0.1em 0.1em 0.2em black;
-  background-color: rgb(0, 150, 255, 0.5);
-}

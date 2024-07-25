@@ -30,6 +30,7 @@ const configureSocket = (server) => {
             break;
         }
 
+        /*
         const data= [
           {
             'Origem': 'socketConfig.js',
@@ -39,6 +40,7 @@ const configureSocket = (server) => {
           }
         ]
         console.table(data);
+        */
 
         // Espera 5 segundos antes de processar a próxima mensagem
         await new Promise(resolve => setTimeout(resolve, 5000));

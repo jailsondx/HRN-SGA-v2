@@ -6,20 +6,40 @@
     align-items: center;
     text-align: center;
 
-    background-color: aqua;
+    background-color: white;
 
     width: 50%;
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 2vw;
+}
+
+
+.div-ListaUsers{
+    width: 40dvw;
 }
 
 .li-container-ListaUsuarios{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     text-align: left;
-
-    width: 100%;
     margin-top: 10px;
 
-    background-color: rgb(0, 255, 85);
+    border-bottom: 1px solid gray;
 
     list-style: none;
+}
+
+.div-li-InforUsuarios{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+.container-Icon-Usuarios{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
 }

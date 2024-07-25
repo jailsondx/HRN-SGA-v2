@@ -30,25 +30,26 @@ const ListaUsuarios = () => {
 
     return (
         <div className='div-Pai-Lista-Usuarios'>
-
-            <span className='span-Title-g'>Lista de Usuários</span>
-
-
-            <div>
-                <ul>
-                    <div className='container-Icon-Cadastro'>
-                        <FcAnswers className="Icon-Cadastro" />
-                    </div>
-                    {usuarios.map((usuario) => (
-                        <li className='li-container-ListaUsuarios' key={usuario.id}>
-                            <span>Usuario: {usuario.full_name}</span>
-                            <span>Login: {usuario.username}</span>
-                            <span>Categoria: {usuario.access_level}</span>
-                        </li>
-                    ))}
-                </ul>
+            <div className='container-Title-Module-g'>
+                <span className='span-Title-g'>Lista de Usuários</span>
             </div>
 
+            <ul>
+                <div className='div-ListaUsers'>
+                    {usuarios.map((usuario) => (
+                        <li className='li-container-ListaUsuarios' key={usuario.id}>
+                            <div className='container-Icon-Usuarios'>
+                                <FcPodiumWithSpeaker className="Icon-Cadastro" />
+                            </div>
+                            <div className='div-li-InforUsuarios'>
+                                <span><b>Usuario: </b> {usuario.full_name}</span>
+                                <span><b>Login: </b> {usuario.username}</span>
+                            </div>
+
+                        </li>
+                    ))}
+                </div>
+            </ul>
         </div>
     );
 };

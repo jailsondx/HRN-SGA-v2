@@ -6,6 +6,8 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import './ZerarTickets.css';
 
+const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
+
 const ZerarTickets = () => {
   const [recepcaoLocation, setRecepcaoLocation] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +18,7 @@ const ZerarTickets = () => {
   const handleConfirm = async () => {
     const username = sessionStorage.getItem('username');
     try {
-      const response = await axios.delete('http://localhost:3001/api/zerartickets', {
+      const response = await axios.delete(`${NODE_URL}/api/zerartickets`, {
         data: { recepcaoLocation, username },
       });
       setSnackbarMessage(response.data.message);

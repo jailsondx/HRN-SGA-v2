@@ -10,6 +10,7 @@ const listaUsuarios = require('../functions/ListaUsuarios');
 const QuantidadeAtendimentos = require('../functions/QuantidadeAtendimentos');
 const imprimirTexto = require('../functions/Impressao');
 const calcularMediaTempo = require('../functions/CalcularMediaAtendimento')
+const exportarRelatorioCSV = require('../functions/Gerencia-GeraRelatorios')
 
 const router = express.Router();
 
@@ -118,7 +119,7 @@ router.delete('/deletaticket', async (req, res) => {
 //Rota para ZERAR ticket
 router.delete('/zerartickets', async (req, res) => {
   const {recepcaoLocation, username } = req.body;
-  const action = 'Tickets Zerados';
+  const action = 'Zerar Tickets';
 
   try {
     const result = await ZerarTickets(recepcaoLocation, username, action);
@@ -129,8 +130,8 @@ router.delete('/zerartickets', async (req, res) => {
       res.status(401).json({ message: 'Credenciais inválidas.', reason: result.message });
     }
   } catch (error) {
-    console.error('Erro ao apagar o ticket:', error);
-    res.status(500).json({ message: 'Erro ao apagar o ticket.' });
+    console.error('CATCH ROTA = Erro ao zerar os tickets:', error);
+    res.status(500).json({ message: 'Erro ao zerar os tickets.' });
   }
 });
 
@@ -217,6 +218,23 @@ router.get('/calcularMediaTempo', async (req, res) => {
     res.status(500).json({ error: 'Erro ao calcular a média de tempo.' });
   }
 });
+
+//Rota para gerar Relatorio
+router.get('/export-csv', async (req, res) => {
+  console.log('requisicao relatorio recebidoa');
+  try {
+      const filePath = await exportarRelatorioCSV();
+      res.download(filePath, 'relatorio_gerencia_tickets.csv', (err) => {
+          if (err) {
+              console.error('Erro ao fazer o download do arquivo:', err);
+              res.status(500).send('Erro ao fazer o download do arquivo');
+          }
+      });
+  } catch (error) {
+      res.status(500).send(error.message);
+  }
+});
+
 
 
 

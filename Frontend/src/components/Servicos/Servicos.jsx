@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { FcAcceptDatabase, FcHighPriority, FcInspection } from "react-icons/fc";
 import ApagarTicket from '../ApagarTicket/ApagarTicket';
 import ZerarTickets from '../ZerarTickets/ZerarTickets';
 
 import './Servicos.css';
+import GeralRelatorio from '../Relatorios/GeralRelatorio/GeralRelatorio';
 
 
 const Servicos = () => {
@@ -20,7 +22,8 @@ const Servicos = () => {
                 return <ApagarTicket />;
             case 'Relatorios':
                 // Adicione seu componente de relatórios aqui quando estiver disponível
-                return <div>Relatórios ainda não implementado</div>;
+                //return <div>Relatórios ainda não implementado</div>;
+                return <GeralRelatorio/>
             default:
                 return null;
         }
@@ -30,9 +33,23 @@ const Servicos = () => {
         <div>
             <div className='container-Service'>
                 <div className='container-Service-Option'>
-                    <span className='item-Service-Option' onClick={() => handleServiceClick('Gerenciar')} style={{cursor: 'pointer'}}>Gerenciar Tickets</span>
-                    <span className='item-Service-Option' onClick={() => handleServiceClick('Apagar')} style={{cursor: 'pointer'}}>Apagar Tickets</span>
-                    <span className='item-Service-Option' onClick={() => handleServiceClick('Relatorios')} style={{cursor: 'pointer'}}>Gerar Relatórios</span>
+                    <div className='Submenu-item'>
+                        <FcAcceptDatabase className='Icon-SubMenu' />
+                        <span className='item-Service-Option' onClick={() => handleServiceClick('Gerenciar')}>Gerenciar Tickets</span>
+                    </div>
+             
+                    <div className='Submenu-item'>
+                        <FcHighPriority className='Icon-SubMenu' />
+                        <span className='item-Service-Option' onClick={() => handleServiceClick('Apagar')}>Apagar Tickets</span>
+                    </div>
+
+                    <div className='Submenu-item'>
+                        <FcInspection className='Icon-SubMenu' />
+                        <span className='item-Service-Option' onClick={() => handleServiceClick('Relatorios')}>Gerar Relatórios</span>
+                    </div>
+
+                   
+
                 </div>
                 <div className='container-Service-Render-Component'>
                     {renderComponent()}

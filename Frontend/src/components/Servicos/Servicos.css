@@ -15,13 +15,12 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding: 2dvh;
+    padding-bottom: 2dvh;
 }
 
 .item-Service-Option{
     margin-right: 1dvw;
     margin-left: 1dvw;
-    border-bottom: 0.1dvw solid gray;
 }
 
 
@@ -31,4 +30,9 @@
     align-items: flex-start;
     width: 100%;
     height: 84dvh;
+}
+
+.Icon-SubMenu{
+    width: 5dvh;
+    height: auto;
 }

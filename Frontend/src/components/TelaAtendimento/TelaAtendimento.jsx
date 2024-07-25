@@ -43,7 +43,9 @@ const TelaAtendimento = () => {
     <div className='container-Atendimento'>
       <div className={`container-Atendimento-Principal ${mostrarMais ? 'show' : 'hide'}`}>
         <div className='container-Ticket-Atendimento'>
-          <span className='span-Label-Title'>Ticket em Atendimento</span>
+          <div className='container-Title-Module-Atendimento-g'>
+            <span className='span-Title-g'>Ticket em Atendimento</span>
+          </div>
           <div className='ticketChamado' id='ticketChamado'>{ticketAtendimento}</div>
         </div>
         <div className='container-Atendimento-Buttons'>
@@ -55,7 +57,11 @@ const TelaAtendimento = () => {
             <ChamaButton socket={socket} />
           </div>
         </div>
-        <ContadorAtendimentos />
+
+        <div className=''>
+          <ContadorAtendimentos refLocation={tableRef} />
+        </div>
+
       </div>
       <div className='container-Atendimento-Lista'>
         <ListaTickets refLocation={tableRef} />

@@ -37,6 +37,7 @@ const TelaLogin = () => {
 
         if (response.status == 200) {
           sessionStorage.setItem('username', username); // Armazena apenas o username na sessão
+          sessionStorage.setItem('level', response.data.level); // Armazena apenas o nivel de acesso do usuario da sessão
           navigate('/gerencia');
         } else {
           setFeedbackMessage('Erro ao Obter Resposta Correta do Servidor');

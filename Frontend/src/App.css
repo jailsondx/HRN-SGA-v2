@@ -30,6 +30,16 @@
   text-shadow: 0.1em 0.1em 0.2em black;
 }
 
+.span-P-Title-g{
+  color: whitesmoke;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  font-size: calc(1vh + 100%);
+}
+
+.span-infor-MiniContainer{
+  font-size: 7vh;
+}
+
 .select-g{
   padding: 1dvh;
   margin-right: 2dvw;
@@ -62,6 +72,15 @@
   color: whitesmoke;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+
+.container-Title-Module-Atendimento-g{
+  background-image: url('blue-wave-bg.jpg');
+  background-position: center;
+  background-size: cover;
+
+  border-radius: 2vw 2vw 0 0;
 }
 
 /* MODAL */
@@ -107,6 +126,16 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+  }
+
+  .select-Modal{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .span-title-select-Modal{
+    text-align: left;
+    margin-right: 1vw;
   }
   
   .modal-close {

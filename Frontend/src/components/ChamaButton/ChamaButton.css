@@ -1,8 +1,13 @@
 .Button-Chama-Ticket{
-    font-size: 2vh;
+    font-size: 1.7vh;
     margin: 0.5%;
-    padding: 1vh;
+    width: auto;
 
     color: whitesmoke;
-    background-color: green;
+    background-color: #017dde;
+}
+
+.container-ChamaButton{
+    display: flex;
+    flex-direction: column;
 }

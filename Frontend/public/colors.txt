@@ -1,0 +1,5 @@
+button chamar proximo: #017dde || #2980B9
+button chamar novamente: #2C3E50
+button chamar ticket: #01baf1
+
+SELECT BUTTON: Baby Blue #89CFF0

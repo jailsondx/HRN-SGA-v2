@@ -22,8 +22,13 @@ export function falarTexto(texto) {
             utterance = new SpeechSynthesisUtterance(dialog[0]+dialog[1]);
         }
 
-        // Fala o texto
-        window.speechSynthesis.speak(utterance);
+        //Toca o som de notificacao
+        playSound();
+        // Define um tempo de espera de 2 segundos (2000 ms) antes de falar o texto
+        setTimeout(() => {
+            // Fala o texto
+            window.speechSynthesis.speak(utterance);
+        }, 2000);
 
     } else {
         console.error('API de Text-to-Speech não suportada neste navegador.');
@@ -43,3 +48,17 @@ function splitIntoTwoParts(value) {
         return [value, ''];
     }
 }
+
+
+function playSound() {
+    // Cria um novo objeto de áudio
+    const audio = new Audio('Notification-base.mp3');
+  
+    // Define a reprodução do áudio
+    audio.play().catch(error => {
+      // Tratamento de erros, caso a reprodução falhe
+      console.error('Erro ao reproduzir o som:', error);
+    });
+  }
+  
+  

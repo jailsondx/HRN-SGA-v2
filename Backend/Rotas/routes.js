@@ -6,6 +6,10 @@ const CadastroUser = require('../functions/CadastroUser');
 const LoginUser = require('../functions/LoginUser');
 const ApagaTicket = require('../functions/ApagaTicket');
 const ZerarTickets = require('../functions/ZerarTickets');
+const listaUsuarios = require('../functions/ListaUsuarios');
+const QuantidadeAtendimentos = require('../functions/QuantidadeAtendimentos');
+const imprimirTexto = require('../functions/Impressao');
+const calcularMediaTempo = require('../functions/CalcularMediaAtendimento')
 
 const router = express.Router();
 
@@ -21,7 +25,9 @@ router.post('/geraTicket', async (req, res) => {
     const result = await GeraTicket(ticket, totemLocation);
 
     if (result.success) {
-      res.status(200).json({ message: 'Ticket gerado com sucesso.', numero: result.proximoNumero });
+      //Chama funcao para imprimir o ticket
+      imprimirTexto(result.tipo + '-' + result.numero);
+      res.status(200).json({ message: 'Ticket gerado com sucesso.'});
     } else {
       res.status(500).json({ error: result.message });
     }
@@ -62,6 +68,29 @@ router.get('/listaTickets', async (req, res) => {
   } catch (error) {
     console.error('Erro ao listar os tickets:', error);
     res.status(500).json({ error: 'Erro ao listar os tickets' });
+  }
+});
+
+
+// Rota para Contador de Atendimentos
+router.get('/ContadorAtendimentos', async (req, res) => {
+  try {
+    const recepcaoLocation = req.query.local;
+    
+    if (!recepcaoLocation) {
+      return res.status(400).json({ error: 'Local de recepção não fornecido' });
+    }
+
+    const result = await QuantidadeAtendimentos(recepcaoLocation);
+
+    if (result.success) {
+      res.status(200).json({ total: result.total });
+    } else {
+      res.status(500).json({ error: result.message });
+    }
+  } catch (error) {
+    console.error('Erro ao listar os atendimentos:', error);
+    res.status(500).json({ error: 'Erro ao listar os atendimentos' });
   }
 });
 
@@ -141,7 +170,7 @@ router.post('/login', async (req, res) => {
     const result = await LoginUser(username, password);
 
     if (result.status) {
-      res.status(200).json({ message: 'Sucesso no login.' });
+      res.status(200).json({ message: 'Sucesso no login.', level: result.level });
     } else {
       res.status(401).json({ message: 'Credenciais inválidas.', reason: result.motivo });
     }
@@ -151,6 +180,43 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Rota para listar todos os usuários
+router.get('/usuarios', async (req, res) => {
+  try {
+    const result = await listaUsuarios();
+
+    if (result.success) {
+      res.status(200).json(result.data);
+    } else {
+      res.status(500).json({ error: result.message });
+    }
+  } catch (error) {
+    console.error('Erro interno ao listar usuários:', error);
+    res.status(500).json({ error: 'Erro interno ao listar usuários' });
+  }
+});
+
+// Rota para calcular a média de tempo entre hora_registro_gerado e hora_registro_atendimento
+router.get('/calcularMediaTempo', async (req, res) => {
+  const { data, local: totemLocation } = req.query;
+
+  if (!data || !totemLocation) {
+    return res.status(400).json({ error: 'Data e localização do totem são obrigatórios.' });
+  }
+
+  try {
+    const result = await calcularMediaTempo(data, totemLocation);
+
+    if (result.success) {
+      res.status(200).json({ media_minutos: result.media_minutos });
+    } else {
+      res.status(500).json({ error: result.message });
+    }
+  } catch (error) {
+    console.error('Erro ao calcular a média de tempo:', error);
+    res.status(500).json({ error: 'Erro ao calcular a média de tempo.' });
+  }
+});
 
 
 

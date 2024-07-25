@@ -18,7 +18,7 @@ async function LoginUser(username, password) {
 
             if (match) {
                 console.log('Usuário com USERNAME e PASSWORD válidos:', rows[0].username);
-                return { status: true };
+                return { status: true, level: rows[0].access_level };
             } else {
                 console.log('Usuário com SENHA invalida');
                 return { status: false, motivo: 'Senha inválida' };

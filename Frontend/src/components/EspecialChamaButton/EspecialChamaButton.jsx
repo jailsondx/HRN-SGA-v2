@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
 import { setValue } from '../../Store';
 
@@ -36,7 +35,7 @@ const EspecialChamaButton = ({ id, socket }) => {
     const ticketID = id;
     if (VerificaLocalStorage() == null) {
       alert('Recepção e/ou Guiché não foi definido');
-    } else {
+    } else if (ticketID != null) {
       try {
         console.log('Ticket Repetido Chamado:', ticketID);
         const ticketGuiche = [recepcaoLocation, guicheLocation, ticketID];
@@ -49,25 +48,23 @@ const EspecialChamaButton = ({ id, socket }) => {
   };
 
   return (
-    <div className='container-Button'>
-      <Button
-        variant="warning"
+    <div className='container-EspecialChamaButton'>
+      <button
         className='Button-Chama-Ticket-Proximo' 
         id='PROX' 
         onClick={enviarMensagem} 
         key='proximo'
       >
         Chamar Proximo
-      </Button>
-      <Button
-        variant="secondary"
+      </button>
+      <button
         className='Button-Chama-Ticket-Repeat' 
         id='REPEAT' 
         onClick={enviarMensagemRepeat} 
         key={id}
       >
         Chamar Novamente
-      </Button>
+      </button>
     </div>
   );
 };

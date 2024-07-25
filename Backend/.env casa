@@ -1,0 +1,12 @@
+DB_HOST=localhost
+DB_PORT=3308
+DB_USER=root
+DB_PASSWORD=naosim
+DB_NAME=hrn_sga
+
+DB_TABLE_PRINCIPAL=tickets_rec_principal
+DB_TABLE_EMERGENCIA=tickets_rec_emergencia
+DB_TABLE_AMBULATORIO=tickets_rec_ambulatorio
+
+NODE_SERVER_IP=10.0.0.2
+NODE_SERVER_PORT=3001

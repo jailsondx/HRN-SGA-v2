@@ -34,8 +34,14 @@ function getFormattedDate(data) {
     return formattedDate;
 }
 
+function getCurrentDateTime() {
+    return `${getFormattedDate()} ${getCurrentTime()}`;
+    //return `${getCurrentTime()} ${getCurrentDate()}`;
+  }
+
 module.exports = {
-    getCurrentDate,
-    getCurrentTime,
-    getFormattedDate
+    getCurrentDate, //Data Atual em formato AMERICANO
+    getCurrentTime, //Hora Atual
+    getFormattedDate, //Formata data atual em formato BR
+    getCurrentDateTime //Data e Hora Atual no formato BR
 };

@@ -7,7 +7,6 @@ const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
 const ListaTickets = ({ refLocation }) => {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState('');
-  console.log('REFERNCIA::::::::::::::', refLocation);
 
   useEffect(() => {
     const recebeTickets = async () => {
@@ -38,7 +37,9 @@ const ListaTickets = ({ refLocation }) => {
 
   return (
     <div className='container-Lista-Tickets'>
-      <span className='span-Label-Lista-Tickets'>Lista de Tickets</span>
+      <div className='container-Title-Module-Atendimento-g'>
+        <span className='span-P-Title-g'>Lista de Tickets</span>
+      </div>
       <div>
         <ul className='container-Tickets-Gerados'>
           {tickets.map((ticket) => (

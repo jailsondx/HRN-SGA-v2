@@ -46,21 +46,26 @@ const ChamaButton = ({ socket }) => {
   };
 
   return (
-    <div className='container-Button'>
-      {/* Renderiza os primeiros 4 botões */}
-      {buttons.slice(0, 4).map(button => (
-        <button className='Button-Chama-Ticket' id={button.id} onClick={enviarMensagem} key={button.id}>
-          {button.label}
-        </button>
-      ))}
-      <br/>
-      {/* Renderiza os próximos 6 botões */}
-      {buttons.slice(4, 10).map(button => (
-        <button className='Button-Chama-Ticket' id={button.id} onClick={enviarMensagem} key={button.id}>
-          {button.label}
-        </button>
-      ))}
-      <br />
+    <div className='container-ChamaButton'>
+      <div className='container-row-Buttons'>
+        {/* Renderiza os primeiros 4 botões */}
+        {buttons.slice(0, 4).map(button => (
+          <button className='Button-Chama-Ticket' id={button.id} onClick={enviarMensagem} key={button.id}>
+            {button.label}
+          </button>
+        ))}
+      </div>
+
+      <div className='container-row-Buttons'>
+        {/* Renderiza os próximos 6 botões */}
+        {buttons.slice(4, 10).map(button => (
+          <button className='Button-Chama-Ticket' id={button.id} onClick={enviarMensagem} key={button.id}>
+            {button.label}
+          </button>
+        ))}
+      </div>
+
+
     </div>
   );
 };

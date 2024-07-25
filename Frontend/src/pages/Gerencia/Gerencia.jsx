@@ -5,6 +5,8 @@ import Cadastro from '../../components/CadastroUser/CadastroUser'
 import Servicos from '../../components/Servicos/Servicos';
 
 import './Gerencia.css'
+import ListaUsuarios from '../../components/ListaUsuarios/ListaUsuarios';
+import MediaAtendimento from '../../components/Dashboard/Painel-MediaAtendimento/MediaAtendimento';
 
 
 
@@ -25,13 +27,16 @@ const Gerencia = () => {
   const renderComponent = () => {
     switch (selectedComponent) {
       case 'Home':
-        return <Home />;
+        return <MediaAtendimento />
+        //return <Home />;
       case 'About':
         return <About />;
       case 'Servicos':
         return <Servicos />;
       case 'Cadastro':
         return <Cadastro />;
+      case 'Usuarios':
+        return <ListaUsuarios />;
       default:
         return <Home />;
     }

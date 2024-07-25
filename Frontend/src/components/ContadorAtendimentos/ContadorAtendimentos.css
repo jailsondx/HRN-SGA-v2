@@ -1,20 +1,22 @@
-.container-ContadorAtendimentos{
+.div-Pai-ContadorAtendimentos{
     display: flex;
     flex-direction: column;
     
     width: 40%;
-    height: 100%;
+
+    min-height: 10vh;
 
     margin: 1%;
     margin-top: 7%;
     border-radius: 2vw;
-    border-top: 2vh solid green;    
 
     background-color: white;
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.span-Label-Title-MiniContainer{
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 2vh;
+.div-ContadorAtendimentos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

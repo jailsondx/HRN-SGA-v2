@@ -51,7 +51,7 @@ async function GeraTicket(tipoTicket, totemLocation) {
       }
 
       console.table(data);
-      return { success: true, proximoNumero };
+      return { success: true, tipo:tipo, numero:FormataNumeroTicket(proximoNumero) };
     } catch (error) {
       console.error('Erro ao inserir novo ticket:', error);
       return { success: false, message: 'Erro ao gerar ticket (inserção)' };

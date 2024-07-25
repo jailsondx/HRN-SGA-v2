@@ -1,3 +1,21 @@
-.Button-Chama-Ticket-Proximo{
+.container-EspecialChamaButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.Button-Chama-Ticket-Proximo, .Button-Chama-Ticket-Repeat{
+    width: auto;
     margin: 0.5%;
+    font-size: 2vh;
+} 
+
+.Button-Chama-Ticket-Proximo{
+    color: whitesmoke;
+    background-color: #017dde;
+}
+.Button-Chama-Ticket-Repeat{
+    color: whitesmoke;
+    background-color: #01297e;
 }

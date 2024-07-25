@@ -17,14 +17,14 @@
 
     margin: 1%;
     border-radius: 2vw;
-    border-top: 2vh solid green;
 
     background-color: white;
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .container-Ticket-Atendimento{
     width: 100%;
-    margin-top: 2vh;
 }
 
 .span-Label-Title{
@@ -46,12 +46,12 @@
 
 
 .container-Atendimento-Principal.show{
-    height: 70%;
+    height: 65%;
     transition: height 0.5s ease-in;
 }
 
 .container-Atendimento-Principal.hide{
-    height: 50%;
+    height: 45%;
     transition: height 0.9s ease-out;
 }
 

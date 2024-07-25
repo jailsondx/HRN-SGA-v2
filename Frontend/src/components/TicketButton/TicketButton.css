@@ -30,8 +30,9 @@
   
   
   .TicketButton {
+    display: flex;
     font-size: 4vw;
-    height: 29vh;
+    height: 27vh;
     width: 100%;
     
     justify-content: center;

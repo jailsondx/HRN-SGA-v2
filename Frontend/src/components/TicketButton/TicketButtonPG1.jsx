@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import buttons from '../ButtonsType/ButtonsType';
 import { useNavigate } from 'react-router-dom';

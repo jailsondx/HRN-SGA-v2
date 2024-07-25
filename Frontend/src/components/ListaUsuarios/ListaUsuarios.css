@@ -1,0 +1,25 @@
+.div-Pai-Lista-Usuarios{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background-color: aqua;
+
+    width: 50%;
+}
+
+.li-container-ListaUsuarios{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    width: 100%;
+    margin-top: 10px;
+
+    background-color: rgb(0, 255, 85);
+
+    list-style: none;
+}

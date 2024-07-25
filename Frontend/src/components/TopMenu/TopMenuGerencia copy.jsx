@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import './TopMenu.css';
 
 const TopMenuGerencia = ({ onSelectComponent }) => {
+
   const username = sessionStorage.getItem('username');
-  const userLevel = sessionStorage.getItem('level'); // Obtém o nível de acesso do usuário
 
   return (
     <div className='Menu'>
@@ -16,16 +16,13 @@ const TopMenuGerencia = ({ onSelectComponent }) => {
             <a className="menu-item" href="#" onClick={() => onSelectComponent('Home')}>Home</a>
             <a className="menu-item" href="#" onClick={() => onSelectComponent('About')}>About</a>
             <a className="menu-item" href="#" onClick={() => onSelectComponent('Servicos')}>Serviços</a>
-            {userLevel === ('master' || 'supervisor') && (
-              <a className="menu-item" href="#" onClick={() => onSelectComponent('Cadastro')}>Cadastro</a>
-            )}
-            {userLevel === 'master' && (
-              <a className="menu-item" href="#" onClick={() => onSelectComponent('Usuarios')}>Usuarios</a>
-            )}
+            <a className="menu-item" href="#" onClick={() => onSelectComponent('Cadastro')}>Cadastro</a>
         </div>
       </nav>
     </div>
   );
+
 }
+
 
 export default TopMenuGerencia;

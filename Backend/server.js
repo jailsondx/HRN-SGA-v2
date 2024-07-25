@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const rotas = require('./Rotas/routes');
 const configureSocket = require('./socketConfig');
+const imprimirTexto = require('./functions/Impressao');
 
 require('dotenv').config();
 
@@ -42,6 +43,11 @@ app.use('/api', rotas);
 // Rota de teste
 app.get('/', (req, res) => {
   res.send('Servidor rodando...');
+});
+
+// Rota de teste
+app.get('/imp', (req, res) => {
+  imprimirTexto('Ola Mundo, essa impressoa é um teste 1234567890 1234567890');
 });
 
 

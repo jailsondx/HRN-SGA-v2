@@ -75,6 +75,7 @@
 }
 
 
+
 .container-Title-Module-Atendimento-g{
   background-image: url('blue-wave-bg.jpg');
   background-position: center;
@@ -89,6 +90,7 @@
   background-size: cover;
 
   width: 100%;
+  padding: 2dvh 0 2dvh 0;
 
   border-radius: 2vw 2vw 0 0;
 }

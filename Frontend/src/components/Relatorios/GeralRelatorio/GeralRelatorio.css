@@ -1,0 +1,54 @@
+.div-Pai-Relatorios{
+    padding: 2dvh;
+    background-image: url(crud-bg.jpg);
+    background-size: cover;
+    background-position: center;
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 2vw;
+
+    min-width: 40dvw;
+
+    color: whitesmoke;
+    text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+.container-Dados-CSV{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.div-Relatorio-Recepcoes{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.div-Relatorio-Datas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.inputs-textData{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-right: 0.5dvw;
+}
+
+.inputs-Data{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    justify-content: space-around;
+    align-items: flex-start;
+}

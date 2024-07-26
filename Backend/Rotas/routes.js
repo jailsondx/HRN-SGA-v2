@@ -219,18 +219,21 @@ router.get('/calcularMediaTempo', async (req, res) => {
   }
 });
 
-//Rota para gerar Relatorio
-router.get('/export-csv', async (req, res) => {
-  console.log('requisicao relatorio recebidoa');
+//Rota para Exportar Relatorio
+router.get('/exportcsv', async (req, res) => {
+  const { startDate, endDate, recepcoes } = req.query;
+  const recepcaoList = recepcoes ? recepcoes.split(',') : [];
+
   try {
-      const filePath = await exportarRelatorioCSV();
-      res.download(filePath, 'relatorio_gerencia_tickets.csv', (err) => {
+      const filePath = await exportarRelatorioCSV(startDate, endDate, recepcaoList);
+      res.download(filePath, `Relatorio-${startDate}-a-${endDate}.csv`, (err) => {
           if (err) {
               console.error('Erro ao fazer o download do arquivo:', err);
               res.status(500).send('Erro ao fazer o download do arquivo');
           }
       });
   } catch (error) {
+      console.error('Erro ao exportar CSV:', error);
       res.status(500).send(error.message);
   }
 });

@@ -4,10 +4,13 @@ import { useSelector } from 'react-redux';
 import ChamaButton from '../ChamaButton/ChamaButton';
 import ListaTickets from '../ListaTickets/ListaTickets';
 import EspecialChamaButton from '../EspecialChamaButton/EspecialChamaButton';
-import ContadorAtendimentos from '../ContadorAtendimentos/ContadorAtendimentos';
+import ContadorAtendimentos from '../Mini Modulos/ContadorAtendimentos/ContadorAtendimentos';
+import Weather from '../Mini Modulos/Weather/Weather';
 import { VerificaLocalStorageGuiche, VerificaLocalStorageRecepcao } from '../../functions/LocalStorageVerification';
 import './TelaAtendimento.css';
 
+
+// Certifique-se de que o NODE_URL está correto
 const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
 
 const TelaAtendimento = () => {
@@ -16,16 +19,26 @@ const TelaAtendimento = () => {
   const ticketAtendimento = useSelector((state) => state.value.value);
   const [tableRef, setTableRef] = useState('');
 
-  // Efeito para criar e gerenciar a conexão WebSocket
   useEffect(() => {
     const recepcaoLocation = VerificaLocalStorageRecepcao();
     const guicheLocation = VerificaLocalStorageGuiche();
-    const newSocket = io(NODE_URL);
+    const newSocket = io(NODE_URL, {
+      transports: ['websocket'],
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000
+    });
+
+    newSocket.on('connect', () => {
+      console.log('Conectado ao servidor WebSocket');
+    });
+
+    newSocket.on('connect_error', (error) => {
+      console.error('Erro na conexão WebSocket:', error);
+    });
 
     newSocket.emit('Atendimento', recepcaoLocation, guicheLocation);
     setSocket(newSocket);
 
-    // Atualizar o tableRef com a localização da recepção
     setTableRef(recepcaoLocation);
 
     return () => {
@@ -58,8 +71,9 @@ const TelaAtendimento = () => {
           </div>
         </div>
 
-        <div className=''>
+        <div className='container-Mini-Containers'>
           <ContadorAtendimentos refLocation={tableRef} />
+          <Weather refLocation={tableRef} />
         </div>
 
       </div>

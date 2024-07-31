@@ -9,8 +9,8 @@ const imprimirTexto = require('./functions/Impressao');
 
 require('dotenv').config();
 
-const IP = process.env.NODE_SERVER_IP;
-const PORT = process.env.NODE_SERVER_PORT;
+const IP = process.env.NODE_SERVER_IP || '0.0.0.0';
+const PORT = process.env.NODE_SERVER_PORT || 3001;
 
 const app = express();
 const server = http.createServer(app);
@@ -22,20 +22,11 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(bodyParser.json());
 
-
-
-
-
 // Aumenta o limite de listeners de eventos
 require('events').EventEmitter.defaultMaxListeners = 20;
 
 // Configura o pool de conexões HTTP
 http.globalAgent.maxSockets = Infinity;
-
-
-
-
-
 
 // Rota para receber os dados de Geracao de Tickets
 app.use('/api', rotas);
@@ -50,12 +41,10 @@ app.get('/imp', (req, res) => {
   imprimirTexto('Ola Mundo, essa impressoa é um teste 1234567890 1234567890');
 });
 
-
-
 // Configuração do Socket.IO
 configureSocket(server);
 
 // Iniciar o servidor
-server.listen(PORT, () => {
-  console.log('Servidor',chalk.bold.green('NodeJS'),'Rodando no IP ' + chalk.magenta(IP) + ' na porta ' + chalk.blue(PORT));
+server.listen(PORT, IP, () => {
+  console.log('Servidor', chalk.bold.green('NodeJS'), 'Rodando no IP ' + chalk.magenta(IP) + ' na porta ' + chalk.blue(PORT));
 });

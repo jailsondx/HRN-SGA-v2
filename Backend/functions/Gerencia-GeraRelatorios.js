@@ -25,7 +25,8 @@ async function exportarRelatorioCSV(startDate, endDate, recepcoes) {
                 {id: 'tipo', title: 'Tipo do Ticket'},
                 {id: 'qtd', title: 'Quantidade do Tipo'},
                 {id: 'data_ref', title: 'Data de Referência'},
-                {id: 'recepcao_ref', title: 'Recepção Referência'}
+                {id: 'recepcao_ref', title: 'Recepção Referência'},
+                {id: 'tempo_med_atendimento', title: 'Tempo Médio de Atendimento (seg)'}
             ]
         });
         

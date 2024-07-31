@@ -14,7 +14,7 @@ const TopMenuGerencia = ({ onSelectComponent }) => {
         </div>
         <div className="container-Buttons-TopMenu">
             <a className="menu-item" href="#" onClick={() => onSelectComponent('Home')}>Home</a>
-            <a className="menu-item" href="#" onClick={() => onSelectComponent('About')}>About</a>
+            <a className="menu-item" href="#" onClick={() => onSelectComponent('Sobre')}>Sobre</a>
             <a className="menu-item" href="#" onClick={() => onSelectComponent('Servicos')}>Serviços</a>
             {userLevel === ('master' || 'supervisor') && (
               <a className="menu-item" href="#" onClick={() => onSelectComponent('Cadastro')}>Cadastro</a>

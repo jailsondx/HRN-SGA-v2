@@ -23,8 +23,15 @@ const EspecialChamaButton = ({ id, socket }) => {
       try {
         const response = await axios.post(`${NODE_URL}/api/chamaTicket`, { id: ticketID, local: recepcaoLocation });
         const ticketGuiche = [recepcaoLocation, guicheLocation, response.data];
-        chamaTicket(setValue(ticketGuiche[2]));
-        socketTelaAtendimento.emit('Mensagem:TicketChamado', ticketGuiche);
+
+        if(response.data.includes("Não")){
+          chamaTicket(setValue(ticketGuiche[2]));
+        } else {
+          // Atualiza o estado com o valor do ticket e envia mensagem pelo socket
+          chamaTicket(setValue(ticketGuiche[2]));
+          socketTelaAtendimento.emit('Mensagem:TicketChamado', ticketGuiche);
+        }
+
       } catch (error) {
         console.error('There was an error sending the data!', error);
       }

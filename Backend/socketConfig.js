@@ -5,8 +5,9 @@ const configureSocket = (server) => {
   const io = new Server(server, {
     cors: {
       origin: '*', // Certifique-se de que este é o URL correto do seu front-end
-      methods: ["GET", "POST"],
+      methods: ['*'],
       allowedHeaders: ['Content-Type'], // Permitir cabeçalhos específicos
+      credentials: true // Permitir cookies e credenciais se necessário
     }
   });
 
@@ -30,18 +31,6 @@ const configureSocket = (server) => {
             break;
         }
 
-        /*
-        const data= [
-          {
-            'Origem': 'socketConfig.js',
-            'Recepcao': mensagem[0],
-            'Guiche': mensagem[1],
-            'Ticket Chamado': mensagem[2],
-          }
-        ]
-        console.table(data);
-        */
-
         // Espera 5 segundos antes de processar a próxima mensagem
         await new Promise(resolve => setTimeout(resolve, 5000));
       } else {
@@ -56,7 +45,7 @@ const configureSocket = (server) => {
 
   // Configuração do Socket.io
   io.on('connection', (socket) => {
-    //console.log('Um usuário se conectou');
+    //console.log(chalk.green('Um usuário se conectou'));
 
     // Escuta mensagens da sala Atendimento e adiciona à fila
     socket.on('Mensagem:TicketChamado', (mensagem) => {
@@ -77,7 +66,7 @@ const configureSocket = (server) => {
     });
 
     socket.on('disconnect', () => {
-      //console.log('Um usuário desconectou');
+      //console.log(chalk.red('Um usuário desconectou'));
     });
   });
 };

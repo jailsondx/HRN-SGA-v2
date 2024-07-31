@@ -29,7 +29,7 @@ const Gerencia = () => {
       case 'Home':
         return <MediaAtendimento />
         //return <Home />;
-      case 'About':
+      case 'Sobre':
         return <About />;
       case 'Servicos':
         return <Servicos />;

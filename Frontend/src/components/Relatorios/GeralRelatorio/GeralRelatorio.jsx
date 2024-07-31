@@ -71,7 +71,7 @@ const ExportCSV = () => {
     return (
         <div className='div-Pai-Relatorios'>
             <div className='div-Title-Form-g'>
-                <span className='span-Title-g'>Relatório Quantitativo</span>
+                <span className='span-Title-g'>Exportar Relatório</span>
             </div>
 
             <div className='container-Dados-CSV'>

@@ -12,9 +12,9 @@ const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
 
 const Cadastro = () => {
   // Definição dos estados
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
+  const [cadUsername, setCadUsername] = useState('');
+  const [cadPassword, setCadPassword] = useState('');
+  const [cadFullName, setCadFullName] = useState('');
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [snackbar, setOpenSnackbar] = useState(false);
   const [alertSeverity, setAlertSeverity] = useState('success');
@@ -31,15 +31,16 @@ const Cadastro = () => {
   // Função para submissão do formulário
   const handleRegister = async (event) => {
     event.preventDefault();
+    const username = sessionStorage.getItem('username');
 
-    if (!username || !password || !fullName) {
+    if (!cadUsername || !cadPassword || !cadFullName) {
       setFeedbackMessage('Por favor, preencha todos os campos.');
       setAlertSeverity('warning');
       setOpenSnackbar(true);
       return;
     }
 
-    if (!validatePassword(password)) {
+    if (!validatePassword(cadPassword)) {
       setFeedbackMessage('A senha deve ter pelo menos 8 caracteres e incluir letras e números.');
       setAlertSeverity('error');
       setOpenSnackbar(true);
@@ -47,15 +48,15 @@ const Cadastro = () => {
     }
 
     try {
-      const response = await axios.post(`${NODE_URL}/api/cadastro`, { username, password, fullName });
+      const response = await axios.post(`${NODE_URL}/api/cadastro`, { username, cadUsername, cadPassword, cadFullName });
       const { message } = response.data;
 
       setFeedbackMessage(message);
       setAlertSeverity('success');
       setOpenSnackbar(true);
-      setFullName('');
-      setUsername('');
-      setPassword('');
+      setCadFullName('');
+      setCadUsername('');
+      setCadPassword('');
     } catch (error) {
       if (error.response && error.response.data) {
         setFeedbackMessage(error.response.data.error);
@@ -89,8 +90,8 @@ const Cadastro = () => {
               className='input-FullName-Cadastro'
               type="text"
               placeholder="Nome Completo"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              value={cadFullName}
+              onChange={(e) => setCadFullName(e.target.value)}
             />
           </div>
         </div>
@@ -105,8 +106,8 @@ const Cadastro = () => {
               className='input-Username-Cadastro'
               type="text"
               placeholder="Nome de Usuário"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={cadUsername}
+              onChange={(e) => setCadUsername(e.target.value)}
             />
           </div>
         </div>
@@ -117,13 +118,13 @@ const Cadastro = () => {
           </div>
           <div className='container-Input-Cadastro'>
             <span>Senha</span>
-            <div className='password-container'>
+            <div className='cadPassword-container'>
               <input
                 className='input-Password-Cadastro'
                 type={showPassword ? "text" : "password"}
                 placeholder="Senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={cadPassword}
+                onChange={(e) => setCadPassword(e.target.value)}
               />
             </div>
           </div>

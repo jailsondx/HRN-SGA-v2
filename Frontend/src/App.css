@@ -33,7 +33,7 @@
 .span-P-Title-g{
   color: whitesmoke;
   text-shadow: 0.1em 0.1em 0.2em black;
-  font-size: calc(1vh + 100%);
+  font-size: 100%;
 }
 
 .span-infor-MiniContainer{

@@ -33,8 +33,8 @@ async function TempoMedioAtendimento(data, totemLocation) {
 
         if (rows.length > 0) {
             const mediaSegundos = rows[0].media_segundos;
-            const mediaMinutos = (mediaSegundos / 60).toFixed(2);
-            return { success: true, media_minutos: mediaSegundos };
+            //const mediaMinutos = (mediaSegundos / 60).toFixed(2);
+            return { success: true, media_segundos: mediaSegundos };
         } else {
             return { success: false, message: 'Nenhum registro encontrado para a data fornecida.' };
         }

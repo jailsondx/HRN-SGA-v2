@@ -13,6 +13,9 @@ async function listaTicket(localAtendimento, res) {
         case 'Recepcao Emergencia':
             DBtable = process.env.DB_TABLE_EMERGENCIA;
             break;
+        case 'Recepcao Ambulatorio':
+                DBtable = process.env.DB_TABLE_AMBULATORIO;
+                break;
         default:
             res.status(400).json({ error: "Local de atendimento inválido" });
             return;

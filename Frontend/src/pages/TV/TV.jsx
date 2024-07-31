@@ -26,6 +26,7 @@ const TV = () => {
     localStorage.setItem('tvLocation', selectedLocation);
     setTvLocation(selectedLocation);
     setShowOptions(false);
+    window.location.reload();
   };
 
   // Função para cancelar a seleção da localização

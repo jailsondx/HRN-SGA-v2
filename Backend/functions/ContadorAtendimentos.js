@@ -2,7 +2,7 @@ const DBconnection = require("../connection");
 const { getCurrentDate } = require("./Datas");
 require('dotenv').config();
 
-async function QuantidadeAtendimentos(recepcaoLocation) {
+async function ContadorAtendimentos(recepcaoLocation) {
   let DBtable;
 
   switch (recepcaoLocation) {
@@ -32,4 +32,4 @@ async function QuantidadeAtendimentos(recepcaoLocation) {
   }
 }
 
-module.exports = QuantidadeAtendimentos;
+module.exports = ContadorAtendimentos;

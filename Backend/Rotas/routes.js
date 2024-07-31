@@ -7,10 +7,14 @@ const LoginUser = require('../functions/LoginUser');
 const ApagaTicket = require('../functions/ApagaTicket');
 const ZerarTickets = require('../functions/ZerarTickets');
 const listaUsuarios = require('../functions/ListaUsuarios');
-const QuantidadeAtendimentos = require('../functions/QuantidadeAtendimentos');
+const ContadorAtendimentos = require('../functions/ContadorAtendimentos');
 const imprimirTexto = require('../functions/Impressao');
-const calcularMediaTempo = require('../functions/CalcularMediaAtendimento')
-const exportarRelatorioCSV = require('../functions/Gerencia-GeraRelatorios')
+const exportarRelatorioCSV = require('../functions/Gerencia-GeraRelatorios');
+const TempoMedioAtendimento = require('../functions/TempoMedioAtendimento');
+
+const axios = require('axios');
+
+const API_KEY = process.env.OPENWEATHERMAP_API_KEY;
 
 const router = express.Router();
 
@@ -82,7 +86,7 @@ router.get('/ContadorAtendimentos', async (req, res) => {
       return res.status(400).json({ error: 'Local de recepção não fornecido' });
     }
 
-    const result = await QuantidadeAtendimentos(recepcaoLocation);
+    const result = await ContadorAtendimentos(recepcaoLocation);
 
     if (result.success) {
       res.status(200).json({ total: result.total });
@@ -139,15 +143,16 @@ router.delete('/zerartickets', async (req, res) => {
 // Rota para receber os dados para cadastro do usuário
 router.post('/cadastro', async (req, res) => {
   try {
-    const { username, password, fullName } = req.body;
+    const { username, cadUsername, cadPassword, cadFullName } = req.body;
+    const action = 'Cadastro de Usuario';
 
     // Verificação de parâmetros obrigatórios
-    if (!username || !password || !fullName) {
+    if (!cadUsername || !cadPassword || !cadFullName) {
       return res.status(400).json({ error: 'Parâmetros inválidos' });
     }
 
     // Chamada à função de cadastro de usuário
-    const cadastroStatus = await CadastroUser(username, password, fullName);
+    const cadastroStatus = await CadastroUser(username, action, cadUsername, cadPassword, cadFullName);
 
     // Resposta com base no resultado do cadastro
     if (cadastroStatus.success) {
@@ -198,7 +203,7 @@ router.get('/usuarios', async (req, res) => {
 });
 
 // Rota para calcular a média de tempo entre hora_registro_gerado e hora_registro_atendimento
-router.get('/calcularMediaTempo', async (req, res) => {
+router.get('/Grafico-TempoAtendimento', async (req, res) => {
   const { data, local: totemLocation } = req.query;
 
   if (!data || !totemLocation) {
@@ -206,10 +211,11 @@ router.get('/calcularMediaTempo', async (req, res) => {
   }
 
   try {
-    const result = await calcularMediaTempo(data, totemLocation);
+    //const result = await GraficoTempoAtendimento(data, totemLocation);
+    const result = await TempoMedioAtendimento(data, totemLocation);
 
     if (result.success) {
-      res.status(200).json({ media_minutos: result.media_minutos });
+      res.status(200).json({ media_segundos: result.media_segundos });
     } else {
       res.status(500).json({ error: result.message });
     }
@@ -239,6 +245,25 @@ router.get('/exportcsv', async (req, res) => {
 });
 
 
+//APIs EXTERNAS
+router.get('/weather', async (req, res) => {
+  const { city } = req.query;
+
+  try {
+    const response = await axios.get('http://api.openweathermap.org/data/2.5/weather', {
+      params: {
+        id: '3387296', // ID para Sobral, BR
+        appid: API_KEY,
+        units: 'metric',
+        lang: 'pt' // Definindo o idioma para português
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Erro ao buscar dados meteorológicos:', error);
+    res.status(500).json({ error: 'Erro ao buscar dados meteorológicos' });
+  }
+});
 
 
 module.exports = router;

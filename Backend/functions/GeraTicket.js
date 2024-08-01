@@ -1,6 +1,7 @@
 const DBconnection = require("../connection");
 const {getCurrentDate, getCurrentTime} = require('./Datas');
 const FormataNumeroTicket = require("./FormataNumeroTicket");
+const chalk = require('chalk');
 
 require('dotenv').config();
 
@@ -42,6 +43,7 @@ async function GeraTicket(tipoTicket, totemLocation) {
       // Executando a consulta
       await DBconnection.query(sql, values);
 
+      /*
       const data = {
         'Origem': 'GeraTickets.js',
         'Localizacao': totemLocation,
@@ -51,6 +53,9 @@ async function GeraTicket(tipoTicket, totemLocation) {
       }
 
       console.table(data);
+
+      */
+      console.log(chalk.bold.magenta('Ticket Gerado:'), tipo + '-' + FormataNumeroTicket(proximoNumero),'na',totemLocation);
       return { success: true, tipo:tipo, numero:FormataNumeroTicket(proximoNumero) };
     } catch (error) {
       console.error('Erro ao inserir novo ticket:', error);

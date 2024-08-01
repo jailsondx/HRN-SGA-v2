@@ -76,11 +76,11 @@ async function copiarTabela(origem, destino) {
             return;
         }
 
-        // Inserir dados na tabela de destino, omitindo a chave primária
+        // Inserir dados na tabela de destino, omitindo a chave primária e adicionando o nome da tabela na coluna 'recepcao_ref'
         for (const row of rows) {
             const { id, ...rowWithoutId } = row; // Omitir a coluna 'id'
-            const columns = Object.keys(rowWithoutId).join(', ');
-            const values = Object.values(rowWithoutId);
+            const columns = Object.keys(rowWithoutId).join(', ') + ', recepcao_ref';
+            const values = [...Object.values(rowWithoutId), origem]; // Adicionar o nome da tabela de origem
             const placeholders = values.map(() => '?').join(', ');
 
             const sql = `INSERT INTO ${destino} (${columns}) VALUES (${placeholders})`;
@@ -98,6 +98,7 @@ async function copiarTabela(origem, destino) {
         connection.release();
     }
 }
+
 
 
 // Função para contar as ocorrências de cada tipo e agrupar por data_registro_atendimento

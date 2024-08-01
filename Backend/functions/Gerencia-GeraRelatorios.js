@@ -1,9 +1,9 @@
 const DBconnection = require("../connection");
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const path = require('path');
-const { getFormattedDate } = require("./Datas");
+const { getFormattedDate, formatDateFromMySQL } = require("./Datas");
 
-async function exportarRelatorioCSV(startDate, endDate, recepcoes) {
+async function exportarRelatorioGeralCSV(startDate, endDate, recepcoes) {
     try {
         // Consulta SQL para selecionar os dados da tabela gerencia_tickets dentro do intervalo de datas e recepções selecionadas
         const consultaSql = `SELECT * FROM gerencia_tickets WHERE data_ref BETWEEN ? AND ? AND recepcao_ref IN (?)`;
@@ -41,4 +41,55 @@ async function exportarRelatorioCSV(startDate, endDate, recepcoes) {
     }
 }
 
-module.exports = exportarRelatorioCSV;
+
+
+//Relatorio Detalhado
+async function exportarRelatorioDetalhadoCSV() {
+    try {
+        // Consulta SQL para selecionar os dados da tabela gerencia_tickets dentro do intervalo de datas e recepções selecionadas
+        const consultaSql = `SELECT * FROM gerencia_tickets_detalhado`;
+        const [rows] = await DBconnection.query(consultaSql);
+        
+        // Formatar DATAS antes de escrever no CSV
+        const formattedRows = rows.map(row => ({
+            ...row,
+            data_registro_gerado: formatDateFromMySQL(row.data_registro_gerado),
+            data_registro_atendimento: row.data_registro_atendimento 
+                ? formatDateFromMySQL(row.data_registro_atendimento)
+                : ''
+        }));
+
+        
+        // Caminho para salvar o arquivo CSV
+        const filePath = path.join(__dirname, `../relatorios/Relatorio-Detalhado.csv`);
+        
+        // Configurar o escritor de CSV
+        const csvWriter = createCsvWriter({
+            path: filePath,
+            header: [
+                {id: 'tipo', title: 'Tipo do Ticket'},
+                {id: 'numero', title: 'Número do Ticket'},
+                {id: 'estado_atendimento', title: 'Ticket Chamado/Atendido?'},
+                {id: 'data_registro_gerado', title: 'Data que o Ticket foi Gerado'},
+                {id: 'data_registro_atendimento', title: 'Data que o Ticket foi Atendido'},
+                {id: 'hora_registro_gerado', title: 'Hora que o Ticket foi Gerado'},
+                {id: 'hora_registro_atendimento', title: 'Hora que o Ticket foi Atendido'},
+                {id: 'recepcao_ref', title: 'Recepção'}
+            ]
+        });
+        
+        // Escrever os dados no arquivo CSV
+        await csvWriter.writeRecords(formattedRows);
+        
+        console.log(`Relatório CSV gerado com sucesso em: ${filePath}`);
+        return filePath;
+    } catch (error) {
+        console.error('Erro ao gerar o relatório CSV:', error);
+        throw new Error('Erro ao gerar o relatório CSV');
+    }
+}
+
+module.exports = { 
+    exportarRelatorioGeralCSV, 
+    exportarRelatorioDetalhadoCSV 
+};

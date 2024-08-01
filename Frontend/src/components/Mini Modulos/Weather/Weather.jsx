@@ -42,7 +42,9 @@ const Weather = () => {
       {error && <div className='div-Error'>{error}</div>}
       {weather ? (
         <div className='div-WeatherInfo'>
-            <div className='Icon-Weather'></div>
+          <div className='div-IconWeather'>
+            <img className='IconWeather' src="sun.gif" alt="Sol" />
+          </div>
           <div className='container-WeatherDetails'>
             <span className='span-WeatherDetail'><b>Temperatura: </b>{weather.main.temp} °C</span>
             <span className='span-WeatherDetail'><b>Sensação Térmica: </b>{weather.main.feels_like} °C</span>

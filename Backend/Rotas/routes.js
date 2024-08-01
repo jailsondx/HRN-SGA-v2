@@ -9,7 +9,7 @@ const ZerarTickets = require('../functions/ZerarTickets');
 const listaUsuarios = require('../functions/ListaUsuarios');
 const ContadorAtendimentos = require('../functions/ContadorAtendimentos');
 const imprimirTexto = require('../functions/Impressao');
-const exportarRelatorioCSV = require('../functions/Gerencia-GeraRelatorios');
+const {exportarRelatorioGeralCSV, exportarRelatorioDetalhadoCSV} = require('../functions/Gerencia-GeraRelatorios');
 const TempoMedioAtendimento = require('../functions/TempoMedioAtendimento');
 
 const axios = require('axios');
@@ -226,12 +226,12 @@ router.get('/Grafico-TempoAtendimento', async (req, res) => {
 });
 
 //Rota para Exportar Relatorio
-router.get('/exportcsv', async (req, res) => {
+router.get('/GeralRelatorio', async (req, res) => {
   const { startDate, endDate, recepcoes } = req.query;
   const recepcaoList = recepcoes ? recepcoes.split(',') : [];
 
   try {
-      const filePath = await exportarRelatorioCSV(startDate, endDate, recepcaoList);
+      const filePath = await exportarRelatorioGeralCSV(startDate, endDate, recepcaoList);
       res.download(filePath, `Relatorio-${startDate}-a-${endDate}.csv`, (err) => {
           if (err) {
               console.error('Erro ao fazer o download do arquivo:', err);
@@ -243,6 +243,24 @@ router.get('/exportcsv', async (req, res) => {
       res.status(500).send(error.message);
   }
 });
+
+//Rota para Exportar Relatorio
+router.get('/DetalhadoRelatorio', async (req, res) => {
+  try {
+      const filePath = await exportarRelatorioDetalhadoCSV();
+      res.download(filePath, `Relatorio-Detalhado.csv`, (err) => {
+          if (err) {
+              console.error('Erro ao fazer o download do arquivo:', err);
+              res.status(500).send('Erro ao fazer o download do arquivo');
+          }
+      });
+  } catch (error) {
+      console.error('Erro ao exportar CSV:', error);
+      res.status(500).send(error.message);
+  }
+});
+
+
 
 
 //APIs EXTERNAS

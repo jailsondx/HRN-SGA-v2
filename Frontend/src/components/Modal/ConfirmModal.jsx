@@ -14,7 +14,9 @@ const ConfirmModal = ({ isOpen, onRequestClose, onConfirm, message }) => {
       overlayClassName="modal-overlay"
     >
       <div className='div-Modal'>
-        <p>{message}</p>
+        <div className='div-Title-Form-g'>
+          <span className='span-Title-Modal'>{message}</span>
+        </div>
         <button className='button-Modal-Confirm' onClick={onConfirm}>Confirmar</button>
         <button className='button-Modal-Cancel' onClick={onRequestClose}>Cancelar</button>
       </div>

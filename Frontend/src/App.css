@@ -9,7 +9,7 @@
   align-items: center;
   text-align: center;
 
-  background-color: whitesmoke;
+  background-color: #E5E5E5;
 }
 
 .label-Local-g{
@@ -152,6 +152,13 @@
   border: 2px solid whitesmoke;
 }
 
+.span-Title-Modal{
+  font-size: 3vh;
+  color: whitesmoke;
+  text-shadow: 0.1em 0.1em 0.2em black;
+
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -182,11 +189,27 @@
   .select-Modal{
     display: flex;
     flex-direction: row;
+
+    justify-content: center;
+  }
+  .select-Modal-text, .select-Modal-options{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+  }
+
+  .select-Modal-text{
+    width: 5vw;
   }
 
   .span-title-select-Modal{
     text-align: left;
-    margin-right: 1vw;
+  }
+
+  .modal-select-option-list, .span-title-select-Modal{
+    margin-bottom: 0.5vh;
+    margin-top: 0.5vh;
   }
   
   .modal-close {

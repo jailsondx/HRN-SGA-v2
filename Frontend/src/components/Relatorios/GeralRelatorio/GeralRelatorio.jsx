@@ -3,11 +3,11 @@ import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import { Alert } from '@mui/material';
 
-import './GeralRelatorio.css';
+import '../Relatorios.css';
 
 const NODE_URL = import.meta.env.VITE_NODE_SERVER_URL;
 
-const ExportCSV = () => {
+const GeralRelatorio = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [selectedRecepcoes, setSelectedRecepcoes] = useState([]);
@@ -41,7 +41,7 @@ const ExportCSV = () => {
         }
 
         try {
-            const response = await axios.get(`${NODE_URL}/api/exportcsv`, {
+            const response = await axios.get(`${NODE_URL}/api/GeralRelatorio`, {
                 responseType: 'blob',
                 params: {
                     startDate,
@@ -52,7 +52,7 @@ const ExportCSV = () => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', `Relatorio-${startDate}-a-${endDate}.csv`); // Nome do arquivo que será baixado
+            link.setAttribute('download', `Relatorio-Geral-${startDate}-a-${endDate}.csv`); // Nome do arquivo que será baixado
             document.body.appendChild(link);
             link.click();
             link.parentNode.removeChild(link);
@@ -71,7 +71,7 @@ const ExportCSV = () => {
     return (
         <div className='div-Pai-Relatorios'>
             <div className='div-Title-Form-g'>
-                <span className='span-Title-g'>Exportar Relatório</span>
+                <span className='span-Title-g'>Relatório Geral</span>
             </div>
 
             <div className='container-Dados-CSV'>
@@ -129,4 +129,4 @@ const ExportCSV = () => {
     );
 };
 
-export default ExportCSV;
+export default GeralRelatorio;

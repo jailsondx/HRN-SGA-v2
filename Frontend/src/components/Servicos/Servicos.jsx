@@ -4,7 +4,7 @@ import ApagarTicket from '../ApagarTicket/ApagarTicket';
 import ZerarTickets from '../ZerarTickets/ZerarTickets';
 
 import './Servicos.css';
-import GeralRelatorio from '../Relatorios/GeralRelatorio/GeralRelatorio';
+import Relatorios from '../Relatorios/Relatorios/Relatorios';
 
 
 const Servicos = () => {
@@ -23,7 +23,7 @@ const Servicos = () => {
             case 'Relatorios':
                 // Adicione seu componente de relatórios aqui quando estiver disponível
                 //return <div>Relatórios ainda não implementado</div>;
-                return <GeralRelatorio/>
+                return <Relatorios />
             default:
                 return null;
         }

@@ -1,3 +1,11 @@
+.container-Relatorios{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 85%;
+}
+
 .div-Pai-Relatorios{
     padding: 2dvh;
     background-image: url(crud-bg.jpg);

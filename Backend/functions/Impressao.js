@@ -1,7 +1,7 @@
 const path = require('path');
 const ThermalPrinter = require("node-thermal-printer").printer;
 const PrinterTypes = require("node-thermal-printer").types;
-const getCurrentDateTime = require('./Datas')
+const {getCurrentDateTime} = require('./Datas')
 
 async function imprimirTexto(texto) {
   const printer = new ThermalPrinter({

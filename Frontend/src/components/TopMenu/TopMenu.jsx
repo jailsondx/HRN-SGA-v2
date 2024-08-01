@@ -37,7 +37,7 @@ function TopMenu() {
         setRecepcao={setRecepcao}
         guiche={guiche}
         setGuiche={setGuiche}
-        message="Configure a Recepcao"
+        message="Configure a Recepção"
       />
     </div>
   );

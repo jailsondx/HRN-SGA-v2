@@ -1,6 +1,7 @@
 const DBconnection = require("../connection");
 const {getCurrentDate, getCurrentTime} = require('./Datas');
 const FormataNumeroTicket = require("./FormataNumeroTicket");
+const chalk = require('chalk');
 
 async function chamaTicket(localAtendimento, tipoTicket) {
     const DBtable = getDBTable(localAtendimento);
@@ -10,9 +11,9 @@ async function chamaTicket(localAtendimento, tipoTicket) {
     }
 
     if (tipoTicket === 'PROX') {
-        return await SQLChamaTicketOrdem(DBtable);
+        return await SQLChamaTicketOrdem(DBtable, localAtendimento);
     } else {
-        return await SQLChamaTicket(DBtable, tipoTicket);
+        return await SQLChamaTicket(DBtable, tipoTicket, localAtendimento);
     }
 }
 
@@ -37,7 +38,7 @@ async function updateTable(DBtable, tipo, numero){
     await DBconnection.query(sql, values);
 }
 
-async function SQLChamaTicket(DBtable, tipo) {
+async function SQLChamaTicket(DBtable, tipo, localAtendimento) {
 
     const recebeTicket = `SELECT * FROM ${DBtable} WHERE estado_atendimento = false AND tipo = ? ORDER BY id ASC LIMIT 1`;
 
@@ -49,11 +50,13 @@ async function SQLChamaTicket(DBtable, tipo) {
 
             //Funcao para fazer o update da tabela para definir o ticket como atendido
             updateTable(DBtable, rows[0].tipo, rows[0].numero);
+
+            console.log(chalk.bold.yellowBright('Ticket Chamado:'), ticketChamado,'na',localAtendimento);
             
             return ticketChamado;
         } else {
             const ticketChamado = `Não há ticket do tipo: ${tipo} esperando Atendimento`;
-            console.log('Nenhum ticket encontrado (SQLChamaTicket Function).');
+            //console.log('Nenhum ticket encontrado (SQLChamaTicket Function).');
             return ticketChamado;
         }
     } catch (error) {
@@ -62,7 +65,7 @@ async function SQLChamaTicket(DBtable, tipo) {
     }
 }
 
-async function SQLChamaTicketOrdem(DBtable) {
+async function SQLChamaTicketOrdem(DBtable, localAtendimento) {
 
     const recebeTicket = `SELECT * FROM ${DBtable} WHERE estado_atendimento = false ORDER BY id ASC LIMIT 1`;
 
@@ -75,10 +78,12 @@ async function SQLChamaTicketOrdem(DBtable) {
             //Funcao para fazer o update da tabela para definir o ticket como atendido
             updateTable(DBtable, rows[0].tipo, rows[0].numero);
 
+            console.log(chalk.bold.yellowBright('Ticket Chamado:'), ticketChamado,'na',localAtendimento);
+
             return ticketChamado;
         } else {
             const ticketChamado = 'Não há ticket esperando Atendimento';
-            console.log('Nenhum ticket encontrado (SQLChamaTicketOrdem Function).');
+            //console.log('Nenhum ticket encontrado (SQLChamaTicketOrdem Function).');
             return ticketChamado;
         }
     } catch (error) {

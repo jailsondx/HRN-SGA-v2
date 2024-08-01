@@ -22,8 +22,8 @@ function getCurrentTime() {
     return formattedTime;
 }
 
-function getFormattedDate(data) {
-    const date = new Date(data);
+function getFormattedDate() {
+    const date = new Date();
 
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
@@ -36,12 +36,22 @@ function getFormattedDate(data) {
 
 function getCurrentDateTime() {
     return `${getFormattedDate()} ${getCurrentTime()}`;
-    //return `${getCurrentTime()} ${getCurrentDate()}`;
-  }
+}
+
+function formatDateFromMySQL(mysqlDate) {
+    const date = new Date(mysqlDate);
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+}
 
 module.exports = {
-    getCurrentDate, //Data Atual em formato AMERICANO
-    getCurrentTime, //Hora Atual
-    getFormattedDate, //Formata data atual em formato BR
-    getCurrentDateTime //Data e Hora Atual no formato BR
+    getCurrentDate, // Data Atual em formato AMERICANO
+    getCurrentTime, // Hora Atual
+    getFormattedDate, // Formata data atual em formato BR
+    getCurrentDateTime, // Data e Hora Atual no formato BR
+    formatDateFromMySQL // Converte data do MySQL para formato BR
 };

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
 
-    width: 50vw;
+    width: 40vw;
 
     padding: 3vw;
     border-radius: 2vw;
@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: row;
 
-    width: 40vw;
+    width: 30vw;
 
     justify-content: flex-start;
     text-align: left;
@@ -37,7 +37,7 @@
     justify-content: center;
     align-items: end;
     width: 4%;
-    margin-left: -38%;
+    margin-left: -35%;
 }
 
 .container-Input-Cadastro{
@@ -58,7 +58,7 @@
 }
 
 .input-Username-Cadastro, .input-Password-Cadastro{
-    width: 20vw;
+    width: 60%;
 }
 
 .Icon-Cadastro{

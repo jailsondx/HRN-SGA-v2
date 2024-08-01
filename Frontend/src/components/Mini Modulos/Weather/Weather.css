@@ -35,10 +35,14 @@
   font-size: 1.1vw;
 }
 
-.Icon-Weather{
-  margin-left: 2%;
-  margin-right: 2%;
-  width: 15%;
-  background: url('sun.gif') center center no-repeat;
-  background-size: contain;
+.div-IconWeather{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
+  width: 20%;
+}
+
+.IconWeather{
+  width: 100%;
 }

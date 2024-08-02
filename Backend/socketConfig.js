@@ -5,7 +5,7 @@ const configureSocket = (server) => {
   const io = new Server(server, {
     cors: {
       origin: '*', // Certifique-se de que este é o URL correto do seu front-end
-      methods: ['*'],
+      methods: ['GET', 'POST'],
       allowedHeaders: ['Content-Type'], // Permitir cabeçalhos específicos
       credentials: true // Permitir cookies e credenciais se necessário
     }
@@ -31,8 +31,8 @@ const configureSocket = (server) => {
             break;
         }
 
-        // Espera 5 segundos antes de processar a próxima mensagem
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        // Espera 6 segundos antes de processar a próxima mensagem
+        await new Promise(resolve => setTimeout(resolve, 6000));
       } else {
         // Se não houver mensagens na fila, espera 1 segundo antes de verificar novamente
         await new Promise(resolve => setTimeout(resolve, 1000));

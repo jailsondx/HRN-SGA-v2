@@ -9,6 +9,8 @@ import Relatorios from '../Relatorios/Relatorios/Relatorios';
 
 const Servicos = () => {
     const [componentType, setComponentType] = useState('');
+    const username = sessionStorage.getItem('username');
+    const userLevel = sessionStorage.getItem('level'); // Obtém o nível de acesso do usuário
 
     const handleServiceClick = (typeComponent) => {
         setComponentType(typeComponent);
@@ -33,22 +35,29 @@ const Servicos = () => {
         <div>
             <div className='container-Service'>
                 <div className='container-Service-Option'>
-                    <div className='Submenu-item'>
-                        <FcAcceptDatabase className='Icon-SubMenu' />
-                        <span className='item-Service-Option' onClick={() => handleServiceClick('Gerenciar')}>Gerenciar Tickets</span>
-                    </div>
-             
-                    <div className='Submenu-item'>
-                        <FcHighPriority className='Icon-SubMenu' />
-                        <span className='item-Service-Option' onClick={() => handleServiceClick('Apagar')}>Apagar Tickets</span>
-                    </div>
+                    {userLevel === ('master' || 'supervisor') && (
+
+                        <>
+                            <div className='Submenu-item'>
+                                <FcAcceptDatabase className='Icon-SubMenu' />
+                                <span className='item-Service-Option' onClick={() => handleServiceClick('Gerenciar')}>Gerenciar Tickets</span>
+                            </div>
+
+                            <div className='Submenu-item'>
+                                <FcHighPriority className='Icon-SubMenu' />
+                                <span className='item-Service-Option' onClick={() => handleServiceClick('Apagar')}>Apagar Tickets</span>
+                            </div>
+
+                        </>
+
+                    )}
 
                     <div className='Submenu-item'>
                         <FcInspection className='Icon-SubMenu' />
                         <span className='item-Service-Option' onClick={() => handleServiceClick('Relatorios')}>Gerar Relatórios</span>
                     </div>
 
-                   
+
 
                 </div>
                 <div className='container-Service-Render-Component'>

@@ -49,7 +49,9 @@ const ZerarTickets = () => {
     <div className='div-pai-ZerarTicket'>
       <form className='form-Zerar-Ticket' onSubmit={handleOpenModal}>
         <div className='div-Title-Form-g'>
-          <span className='span-Title-g'>Zerar Tickets</span>
+          <span className='span-Title-g'>Limpar Tickets</span>
+          <br/>
+          <span className='span-P-Title-g'>Limpa todos os tickets, zerando os contadores</span>
         </div>
         <div>
           <select

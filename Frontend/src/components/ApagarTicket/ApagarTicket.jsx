@@ -18,7 +18,9 @@ const ApagarTicket = () => {
         <div className='div-pai-ApagarTicket'>
             <form className='form-Apagar-Ticket' onSubmit={handleLista}>
                 <div className='div-Title-Form-g'>
-                    <span className='span-Title-g'>Apagar Tickets</span>
+                    <span className='span-Title-g'>Apagar Ticket</span>
+                    <br/>
+                    <span className='span-P-Title-g'>Apaga um ticket específico</span>
                 </div>
                 <div>
                     <select 

@@ -3,6 +3,7 @@ const GeraTicket = require('../functions/GeraTicket'); // Ajuste o caminho confo
 const chamaTicket = require('../functions/ChamaTicket');
 const listaTicket = require('../functions/ListaTicket');
 const CadastroUser = require('../functions/CadastroUser');
+const AtualizarSenha =  require('../functions/AtualizaSenha')
 const LoginUser = require('../functions/LoginUser');
 const ApagaTicket = require('../functions/ApagaTicket');
 const ZerarTickets = require('../functions/ZerarTickets');
@@ -140,32 +141,41 @@ router.delete('/zerartickets', async (req, res) => {
 });
 
 
-// Rota para receber os dados para cadastro do usuário
-router.post('/cadastro', async (req, res) => {
+// Rota para receber os dados para Atualizar Senha
+router.post('/cadastro-update-password', async (req, res) => {
   try {
-    const { username, cadUsername, cadPassword, cadFullName } = req.body;
-    const action = 'Cadastro de Usuario';
-
+    const { username, targetUsername, newPassword } = req.body;
+    let action;
+  
     // Verificação de parâmetros obrigatórios
-    if (!cadUsername || !cadPassword || !cadFullName) {
+    if (!targetUsername || !newPassword) {
       return res.status(400).json({ error: 'Parâmetros inválidos' });
     }
 
-    // Chamada à função de cadastro de usuário
-    const cadastroStatus = await CadastroUser(username, action, cadUsername, cadPassword, cadFullName);
-
-    // Resposta com base no resultado do cadastro
-    if (cadastroStatus.success) {
-      res.json({ message: cadastroStatus.message });
+    // Definição da ação com base na nova senha
+    if (newPassword === '@isgh2024') {
+      action = 'Reset de Senha para padrão';
     } else {
-      // Considerando erros como nome de usuário existente etc.
-      res.status(400).json({ error: cadastroStatus.message });
+      action = 'Atualização de Senha';
+    }
+
+    // Chamada à função de atualização de senha
+    const updateStatus = await AtualizarSenha(username, action, targetUsername, newPassword);
+
+    // Resposta com base no resultado da atualização de senha
+    if (updateStatus.success) {
+      res.json({ message: updateStatus.message });
+    } else {
+      // Considerando erros como usuário não encontrado etc.
+      res.status(400).json({ error: updateStatus.message });
     }
   } catch (error) {
-    console.error('Erro no cadastro:', error);
-    res.status(500).json({ error: 'Erro interno no cadastro' });
+    console.error('Erro na atualização de senha:', error);
+    res.status(500).json({ error: 'Erro interno na atualização de senha' });
   }
 });
+
+
 
 
 // Rota de Login

@@ -57,16 +57,39 @@
   cursor: pointer;
 }
 
+.container-Icon-VisiblePassword-Update{
+  height: 100%;
+  margin-left: 3%;
+  filter: drop-shadow(3px 5px 4px black);
+  cursor: pointer;
+}
+
 .Icon-delete-ticket-g{
   width: 10%;
   min-width: 20px;
   cursor: pointer;
 }
 
-.Icon-delete-ticket-g:hover{
-  scale: 1.2;
+.Icon-Users-Options{
+  width: auto;
+  height: 60%;
+
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
+[class^="Icon"]:hover {
+  scale: 1.2;
+  cursor: pointer;
+}
+
+.div-Icon-UsersOptions{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
 
 [class^="form"] {
   color: whitesmoke;
@@ -200,7 +223,7 @@
   }
 
   .select-Modal-text{
-    width: 5vw;
+    width: 100%;
   }
 
   .span-title-select-Modal{
@@ -226,5 +249,13 @@
   .button-Modal-Cancel{
     color: whitesmoke;
     background-color: #cf000f;
+  }
+
+
+  .div-Update-Password{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
   
